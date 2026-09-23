@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>modelos — which AI model to use for each task</title>
+<meta name="description" content="A direct guide to choosing among Claude Opus 5.5, GPT-6 Astra, Sol and Luna: stack per task, rules, prompts and test battery.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0c10; --bg2:#14141b; --card:#16161e; --line:#272730;
+    --txt:#e9e9ee; --mut:#9a9aa6; --amb:#E2A23B; --amb2:#f0c070; --sky:#38bdf8; --pro:#cbd5e1;
+    color-scheme:dark;
+  }
+  body.light{
+    --bg:#f6f7f9; --bg2:#eceef2; --card:#ffffff; --line:#e1e3ea;
+    --txt:#1a1a22; --mut:#5b5b68; --amb:#b9791d; --amb2:#a16207; --sky:#0369a1; --pro:#b45309;
+    color-scheme:light;
+  }
+  body.light .hero .glow{opacity:.5}
+  body.light pre{background:#0e0e14;color:#d6d6e0}
+  body.light pre .c{color:#8a8a98}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:Sora,sans-serif;line-height:1.15;margin:0}
+  a{color:var(--amb);text-decoration:none}
+  code,pre{font-family:"JetBrains Mono",monospace}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 22px}
+  .mut{color:var(--mut)} .amb{color:var(--amb)}
+  .chip{display:inline-block;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amb);font-weight:600;font-family:Sora}
+  nav{position:sticky;top:0;z-index:30;backdrop-filter:blur(12px);background:rgba(12,12,16,.78);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;gap:22px;height:60px}
+  nav .brand{display:flex;align-items:center;gap:8px;font-family:Sora;font-weight:800;letter-spacing:-.02em;color:var(--amb)}
+  nav .brand .emoji{font-size:1.25rem}
+  nav .sep{color:var(--mut);opacity:.45}
+  nav .inema{color:var(--sky);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .inema:hover{filter:brightness(1.15)}
+  nav .pro{color:var(--pro);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .pro:hover{filter:brightness(1.15)}
+  nav .clubpro{display:inline-flex;align-items:center;gap:6px}
+  nav .links{margin-left:auto;display:flex;align-items:center;gap:20px;font-size:.92rem}
+  nav .links a.sec{color:var(--mut)} nav .links a.sec:hover{color:var(--txt)}
+  .tgl{background:var(--bg2);border:1px solid var(--line);color:var(--txt);width:38px;height:38px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:1.05rem}
+  .tgl:hover{border-color:var(--amb)}
+  .btn{display:inline-block;background:var(--amb);color:#1a1206;font-weight:600;padding:.6em 1.05em;border-radius:10px;font-family:Sora}
+  .btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
+  @media(max-width:760px){nav .links a.sec{display:none}}
+  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero .glow{position:absolute;inset:-40% -20% auto auto;width:70%;height:600px;background:radial-gradient(closest-side,rgba(226,162,59,.22),transparent 70%);pointer-events:none}
+  .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:74px 22px}
+  .hero h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800;letter-spacing:-.025em}
+  .hero p.lead{font-size:1.18rem;color:var(--mut);margin:1.1em 0 1.6em;max-width:34ch}
+  .hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+  .hero figure{margin:0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000}
+  .hero figure img{width:100%;display:block}
+  @media(max-width:780px){.hero .wrap{grid-template-columns:1fr;padding:48px 22px}}
+  section{padding:62px 0;border-bottom:1px solid var(--line)}
+  section h2{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:800;letter-spacing:-.02em}
+  section .sub{color:var(--mut);margin:.6em 0 2em;max-width:62ch}
+  .grid{display:grid;gap:16px}
+  .g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:820px){.g3,.g4{grid-template-columns:1fr 1fr}}
+  @media(max-width:540px){.g2,.g3,.g4{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .card h3{font-size:1.05rem;margin-bottom:.4em}
+  .card p{color:var(--mut);font-size:.92rem;margin:0}
+  .num{display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;border-radius:8px;background:rgba(226,162,59,.14);color:var(--amb);font-family:Sora;font-weight:800;font-size:.9rem;margin-bottom:.7em}
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+  .flow span{background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:.45em .9em;font-size:.85rem;font-family:Sora;font-weight:600}
+  .flow .arr{color:var(--amb);border:none;background:none;padding:0 .1em}
+  pre{background:#0a0a0e;border:1px solid var(--line);border-radius:12px;padding:16px 18px;overflow:auto;font-size:.86rem;line-height:1.6;color:#d6d6e0}
+  pre .c{color:#6f6f7c} pre .k{color:var(--amb2)} pre .s{color:#9ece6a}
+  .step{display:grid;grid-template-columns:46px 1fr;gap:16px;margin-bottom:26px}
+  .step .b{width:46px;height:46px;border-radius:12px;background:var(--amb);color:#1a1206;font-family:Sora;font-weight:800;font-size:1.25rem;display:flex;align-items:center;justify-content:center}
+  .step h3{font-size:1.12rem;margin-bottom:.3em}
+  .step p{color:var(--mut);margin:.2em 0 .7em}
+  .ex{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:680px){.ex{grid-template-columns:1fr}}
+  .ex figure{margin:0;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  .ex figure img{width:100%;display:block}
+  .ex figcaption{padding:12px 14px;font-size:.88rem;color:var(--mut);background:var(--card)}
+  .phase{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .phase:last-child{border:none}
+  .phase .tag{flex:0 0 92px;font-family:Sora;font-weight:800;color:var(--amb)}
+  .phase .d strong{display:block;margin-bottom:.2em}
+  .phase .d span{color:var(--mut);font-size:.92rem}
+  footer{padding:46px 0;text-align:center;color:var(--mut);font-size:.9rem}
+  .pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:.3em .8em;font-size:.78rem;color:var(--mut);margin:0 4px}
+</style>
+<link rel="alternate" hreflang="pt-BR" href="https://inematds.github.io/modelos/guia/">
+<link rel="alternate" hreflang="en" href="https://inematds.github.io/modelos/guia/en/">
+</head>
+<body>
+
+<nav><div class="wrap">
+  <a class="brand" href="#top"><span class="emoji">🧭</span> modelos</a>
+  <span class="sep">|</span>
+  <span class="clubpro">
+    <a class="inema" href="https://inema.club" target="_blank" rel="noopener">INEMA.CLUB</a>
+    <span class="sep">-</span>
+    <a class="pro" href="https://inema.pro" target="_blank" rel="noopener">PRO</a>
+  </span>
+  <div class="links">
+    <a class="sec" href="#oque">What it is</a>
+    <a class="sec" href="#pilha">Stack</a>
+    <a class="sec" href="#guia">How to use</a>
+    <a class="sec" href="#padroes">Patterns</a>
+    <a class="sec" href="#roadmap">Next steps</a>
+    <a class="sec" href="../" hreflang="pt-BR" lang="pt-BR" title="Versão em português">PT</a>
+    <button class="tgl" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">🌙</button>
+    <a class="btn" href="https://github.com/inematds/modelos" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</div></nav>
+
+<header class="hero" id="top">
+  <div class="glow"></div>
+  <div class="wrap">
+    <div>
+      <span class="chip">Claude · GPT-6 · Grok — September 2026</span>
+      <h1>The <span class="amb">right</span> model for each task</h1>
+      <p class="lead">A straight-to-the-point guide to choosing among the latest AI models, with no platform loyalty — and a ready base to turn into a skill, a prompt or a usage rule.</p>
+      <div class="cta">
+        <a class="btn" href="#pilha">See the stack</a>
+        <a class="btn ghost" href="https://github.com/inematds/modelos" target="_blank" rel="noopener">View on GitHub</a>
+      </div>
+    </div>
+    <figure><img src="../assets/banner-en.jpg" alt="Banner: which AI model to use for each task"></figure>
+  </div>
+</header>
+
+<section id="oque"><div class="wrap">
+  <span class="chip">What it is</span>
+  <h2>A practical catalog, not a benchmark ranking</h2>
+  <p class="sub">Many models shipped at once. This repository sorts out what to use in each situation, with simple rules to decide and to revisit the choice.</p>
+  <div class="grid g3">
+    <div class="card"><h3>🧭 One stack per task</h3><p>Planning, general use, execution, grunt work, second opinion: each role has a model and an effort level.</p></div>
+    <div class="card"><h3>🗂️ Standard model cards</h3><p>Every model has a card with a YAML header (status, best for, avoid for, effort) — easy to turn into a skill.</p></div>
+    <div class="card"><h3>🧪 Test on your own tasks</h3><p>Benchmarks don't decide. A battery of real cases and the "honeymoon" rule keep you from switching stacks on impulse.</p></div>
+  </div>
+</div></section>
+
+<section id="pilha"><div class="wrap">
+  <span class="chip">Current stack</span>
+  <h2>Who does what</h2>
+  <p class="sub">Used through subscriptions (Claude plan + Codex plan). "Cost" here means how much of the quota each model uses up.</p>
+  <div class="grid g3">
+    <div class="card"><div class="num">1</div><h3>Planning and hard problems</h3><p><strong>GPT-6 Astra</strong> · medium–high effort. Architecture, war-gaming, demanding cases.</p></div>
+    <div class="card"><div class="num">2</div><h3>General use and complex projects</h3><p><strong>Claude Opus 5.5</strong> · low effort. Fast, direct, economical, needs few instructions.</p></div>
+    <div class="card"><div class="num">3</div><h3>Creative, design, video, browser</h3><p><strong>Claude Opus 5.5</strong> · low–medium. Gets it right the first time where taste matters.</p></div>
+    <div class="card"><div class="num">4</div><h3>Executing a ready plan</h3><p><strong>GPT-6 Sol</strong> · medium–high. Good value when the task is already well defined.</p></div>
+    <div class="card"><div class="num">5</div><h3>Reviewing and fixing code</h3><p><strong>GPT-6 Sol</strong> · medium–high. Strong when there is a clear criterion (tests that pass or fail).</p></div>
+    <div class="card"><div class="num">6</div><h3>Grunt work</h3><p><strong>GPT-6 Luna</strong> · Low for simple and fast; High / X-High for heavy work. Unambiguous tasks only.</p></div>
+    <div class="card"><div class="num">7</div><h3>Many parallel subtasks</h3><p><strong>Opus 5.5 orchestrates</strong>, Sol or Luna execute. Judgment once, cheap execution many times.</p></div>
+    <div class="card"><div class="num">8</div><h3>Ambiguous case</h3><p><strong>Astra proposes, Opus 5.5 reviews.</strong> Two cheap views beat one expensive one.</p></div>
+    <div class="card"><div class="num">✕</div><h3>Out of the stack</h3><p>Grok 4.7 (worse than 4.6) · Fable 5.1 (expensive, surpassed by Opus 5.5) · Sonnet 5 and Haiku 4.5 (weak value).</p></div>
+  </div>
+</div></section>
+
+<section id="fluxo"><div class="wrap">
+  <span class="chip">How to decide</span>
+  <h2>From request to model in four questions</h2>
+  <p class="sub">Look at the hardest step of the task, not the task as a whole.</p>
+  <div class="flow">
+    <span>What is the hardest step?</span><span class="arr">→</span>
+    <span>Smallest model that handles it</span><span class="arr">→</span>
+    <span>Lowest effort that covers the risk</span><span class="arr">→</span>
+    <span>Check the result</span><span class="arr">→</span>
+    <span>Log it</span>
+  </div>
+  <div class="grid g3" style="margin-top:26px">
+    <div class="card"><h3>🚫 No loyalty</h3><p>Go wherever you are best served — team Claude or team Codex, it doesn't matter.</p></div>
+    <div class="card"><h3>📈 Don't pay for the top</h3><p>Above "high" effort there was no real gain. Raise it only with evidence.</p></div>
+    <div class="card"><h3>🍯 Honeymoon</h3><p>Every new model looks great in its first days. Wait a week before changing your stack.</p></div>
+    <div class="card"><h3>🎯 Quota per result</h3><p>A model that uses more quota but nails it the first time can beat four attempts on the cheaper one.</p></div>
+    <div class="card"><h3>📁 One agent, one folder</h3><p>Two agents in the same repository trip over each other. Isolate each one and tell it where it may write.</p></div>
+    <div class="card"><h3>🧪 Test it yourself</h3><p>Three real tasks, two models, same prompt. Thirty minutes beat any benchmark.</p></div>
+  </div>
+</div></section>
+
+<section id="pre"><div class="wrap">
+  <span class="chip">Requirements</span>
+  <h2>What you need</h2>
+  <p class="sub">Nothing to install beyond the tools you already use.</p>
+  <div class="grid g3">
+    <div class="card"><h3>Claude subscription</h3><p>Claude Code or Claude Desktop, for Opus 5.5.</p><pre><span class="c"># check quota usage</span>
+<span class="k">/usage</span></pre></div>
+    <div class="card"><h3>Codex subscription</h3><p>Codex CLI or Codex Desktop, for GPT-6 Astra, Sol and Luna.</p><pre><span class="k">codex</span>  <span class="c"># opens a session</span></pre></div>
+    <div class="card"><h3>The repository</h3><p>Model cards, rules and prompts in Markdown (written in Portuguese).</p><pre><span class="k">git clone</span> <span class="s">https://github.com/inematds/modelos</span></pre></div>
+  </div>
+</div></section>
+
+<section id="guia"><div class="wrap">
+  <span class="chip">How to use · step by step</span>
+  <h2>Day-to-day use</h2>
+  <p class="sub">From a quick lookup to turning the catalog into a skill.</p>
+
+  <div class="step"><div class="b">1</div><div>
+    <h3>Check the stack</h3>
+    <p>The README table is the quick reference. When in doubt, open the model's card.</p>
+<pre><span class="k">cat</span> README.md               <span class="c"># stack per task + rules</span>
+<span class="k">cat</span> modelos/opus-5-5.md     <span class="c"># card: best for, avoid for, effort</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">2</div><div>
+    <h3>Use a ready-made pattern</h3>
+    <p>For flows with more than one model, copy the matching prompt.</p>
+<pre>prompts/planejar-executar.md     <span class="c"># Astra plans → Sol executes</span>
+prompts/segunda-opiniao.md       <span class="c"># Astra proposes → Opus 5.5 reviews</span>
+prompts/orquestrador-workers.md  <span class="c"># Opus 5.5 splits work → Sol/Luna do it</span>
+prompts/tarefa-bracal.md         <span class="c"># Luna in batch, no ambiguity</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">3</div><div>
+    <h3>Log what you observe</h3>
+    <p>One line per observation, newest on top. This is what makes the honeymoon rule practical.</p>
+<pre><span class="c"># log.md</span>
+| date | model | task | result | source |</pre>
+  </div></div>
+
+  <div class="step"><div class="b">4</div><div>
+    <h3>Run the quick test</h3>
+    <p>Three real tasks (easy, medium, hard), same prompt on the current model and the candidate. Repeat the hard one after a week.</p>
+<pre>regras.md             <span class="c"># 30-minute protocol</span>
+avaliacao/bateria.md  <span class="c"># 8 real cases, 0–3 score, quota used</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">5</div><div>
+    <h3>Turn it into a skill once the stack settles</h3>
+    <p>There is a ready draft that answers "which model should I use for this?".</p>
+<pre><span class="k">cp -r</span> skills/escolher-modelo ~/.claude/skills/</pre>
+  </div></div>
+</div></section>
+
+<section id="padroes"><div class="wrap">
+  <span class="chip">Usage patterns</span>
+  <h2>Three combinations that work</h2>
+  <p class="sub">The expensive part (judgment) happens once; the long part (execution) runs cheap.</p>
+  <div class="grid g3">
+    <div class="card"><h3>🗺️ Plan → execute</h3><p>Astra writes a plan with verifiable steps; Sol executes without changing it and stops if anything goes off-script.</p></div>
+    <div class="card"><h3>⚖️ Second opinion</h3><p>Astra proposes; Opus 5.5 reviews as a skeptic. If they agree, go ahead. If not, the disagreement is what you decide.</p></div>
+    <div class="card"><h3>🎛️ Orchestrator + workers</h3><p>Opus 5.5 splits the work and reviews it; Sol or Luna handle each part in its own folder.</p></div>
+  </div>
+</div></section>
+
+<section id="roadmap"><div class="wrap">
+  <span class="chip">Next steps</span>
+  <h2>What comes next</h2>
+  <p class="sub">The stack is a starting point and will be revisited with real use.</p>
+  <div class="phase"><div class="tag">Now</div><div class="d"><strong>Catalog published</strong><span>Stack, model cards, rules, prompts and test battery.</span></div></div>
+  <div class="phase"><div class="tag">Sep 30</div><div class="d"><strong>Post-honeymoon review</strong><span>Confirm or adjust the stack after a week of use.</span></div></div>
+  <div class="phase"><div class="tag">Later</div><div class="d"><strong>Model-picking skill</strong><span>Install the escolher-modelo skill or fold the stack into the existing model router.</span></div></div>
+</div></section>
+
+<footer>
+  <div class="wrap">
+    <div class="pill">Markdown</div><div class="pill">YAML</div><div class="pill">Claude Code</div><div class="pill">Codex</div>
+    <p style="margin-top:18px">modelos · practical guide to AI models ·
+      <a href="https://github.com/inematds/modelos">inematds/modelos</a> ·
+      <a href="../">Português</a> ·
+      <a href="https://inema.club">INEMA.CLUB</a></p>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var KEY='modelos-theme';
+    var b=document.body, t=document.getElementById('themeToggle');
+    if(localStorage.getItem(KEY)==='light'){ b.classList.add('light'); t.textContent='☀️'; }
+    t.addEventListener('click',function(){
+      var light=b.classList.toggle('light');
+      t.textContent=light?'☀️':'🌙';
+      localStorage.setItem(KEY, light?'light':'dark');
+    });
+  })();
+</script>
+</body>
+</html>

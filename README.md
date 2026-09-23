@@ -1,5 +1,11 @@
 # modelos — qual modelo usar, direto ao ponto
 
+[![Qual modelo de IA usar](guia/assets/banner.jpg)](https://inematds.github.io/modelos/guia/)
+
+## 📖 Guia de uso
+
+Guia completo (landing + passo a passo): **https://inematds.github.io/modelos/guia/** · English: **https://inematds.github.io/modelos/guia/en/**
+
 Catálogo prático dos modelos recentes (Claude, GPT-6, Grok) para decidir **qual usar em cada tarefa**
 e servir de base para skills, prompts e orientações.
 
