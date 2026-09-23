@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>modelos — qual modelo de IA usar em cada tarefa</title>
-<meta name="description" content="Guia direto para escolher entre Claude Opus 5.5, GPT-6 Astra, Sol e Luna: pilha por tarefa, regras, prompts e bateria de teste.">
+<meta name="description" content="Guia direto para escolher entre Claude Opus 5.5, GPT-6 Astra, Sol e Luna: modelos explicados de forma simples, pilha por tarefa, regras, prompts e bateria de teste.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -89,14 +89,40 @@
   .phase .d span{color:var(--mut);font-size:.92rem}
   footer{padding:46px 0;text-align:center;color:var(--mut);font-size:.9rem}
   .pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:.3em .8em;font-size:.78rem;color:var(--mut);margin:0 4px}
+  /* extras modelos */
+  .mcard{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 24px}
+  .mcard h3{font-size:1.25rem;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .mcard .role{font-family:Sora;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;padding:.3em .7em;border-radius:999px;border:1px solid var(--line);color:var(--amb)}
+  .mcard .role.out{color:var(--mut)}
+  .mcard .one{font-size:1.02rem;margin:.7em 0 .4em}
+  .mcard .like{color:var(--mut);font-style:italic;margin:0 0 .9em}
+  .mcard ul{margin:.2em 0 .8em 1.1em;padding:0;color:var(--mut);font-size:.93rem}
+  .mcard .lbl{font-family:Sora;font-weight:600;font-size:.82rem;color:var(--txt);margin-top:.6em}
+  .mcard .eff{font-family:"JetBrains Mono",monospace;font-size:.82rem;color:var(--amb2)}
+  .qcard{display:block;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;color:var(--txt)}
+  .qcard:hover{border-color:var(--amb)}
+  .qcard .n{font-family:Sora;font-weight:800}
+  .qcard .r{display:block;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--amb);margin:.2em 0 .5em;font-family:Sora}
+  .qcard .r.out{color:var(--mut)}
+  .qcard p{margin:0;color:var(--mut);font-size:.9rem}
+  .rule{border:1px solid var(--amb);background:rgba(226,162,59,.08);border-radius:16px;padding:24px 26px;margin-top:22px}
+  .rule h3{font-size:1.3rem;margin-bottom:.4em}
+  .rule p{margin:.3em 0;color:var(--txt)}
+  .stack{display:grid;grid-template-columns:1fr auto;gap:0;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .stack div{padding:14px 18px;border-bottom:1px solid var(--line);background:var(--card)}
+  .stack div:nth-last-child(-n+2){border-bottom:none}
+  .stack .m{font-family:Sora;font-weight:800;color:var(--amb);text-align:right}
+  .langs a{color:var(--mut);font-family:Sora;font-weight:600;font-size:.85rem;margin:0 3px}
+  .langs a.on{color:var(--amb)}
 </style>
 <link rel="alternate" hreflang="pt-BR" href="https://inematds.github.io/modelos/guia/">
 <link rel="alternate" hreflang="en" href="https://inematds.github.io/modelos/guia/en/">
+<link rel="alternate" hreflang="es" href="https://inematds.github.io/modelos/guia/es/">
 </head>
 <body>
 
 <nav><div class="wrap">
-  <a class="brand" href="#top"><span class="emoji">🧭</span> modelos</a>
+  <a class="brand" href=""><span class="emoji">🧭</span> modelos</a>
   <span class="sep">|</span>
   <span class="clubpro">
     <a class="inema" href="https://inema.club" target="_blank" rel="noopener">INEMA.CLUB</a>
@@ -104,12 +130,11 @@
     <a class="pro" href="https://inema.pro" target="_blank" rel="noopener">PRO</a>
   </span>
   <div class="links">
-    <a class="sec" href="#oque">O que é</a>
+    <a class="sec" href="modelos/">Modelos</a>
     <a class="sec" href="#pilha">Pilha</a>
     <a class="sec" href="#guia">Guia de uso</a>
     <a class="sec" href="#padroes">Padrões</a>
-    <a class="sec" href="#roadmap">Próximos passos</a>
-    <a class="sec" href="en/" hreflang="en" lang="en" title="English version">EN</a>
+    <span class="langs"><a class="on" href="" hreflang="pt-BR" lang="pt-BR">PT</a> <a class="" href="en/" hreflang="en" lang="en">EN</a> <a class="" href="es/" hreflang="es" lang="es">ES</a></span>
     <button class="tgl" id="themeToggle" aria-label="Alternar tema" title="Alternar tema">🌙</button>
     <a class="btn" href="https://github.com/inematds/modelos" target="_blank" rel="noopener">GitHub</a>
   </div>
@@ -121,145 +146,84 @@
     <div>
       <span class="chip">Claude · GPT-6 · Grok — setembro de 2026</span>
       <h1>O modelo <span class="amb">certo</span> para cada tarefa</h1>
-      <p class="lead">Um guia direto para escolher entre os modelos de IA recentes, sem lealdade a plataforma — e uma base pronta para virar skill, prompt ou regra de uso.</p>
+      <p class="lead">Muitos modelos chegaram ao mesmo tempo. A resposta prática é simples: use o melhor modelo para cada tarefa, sem lealdade a nenhuma plataforma.</p>
       <div class="cta">
-        <a class="btn" href="#pilha">Ver a pilha</a>
-        <a class="btn ghost" href="https://github.com/inematds/modelos" target="_blank" rel="noopener">Ver no GitHub</a>
+        <a class="btn" href="modelos/">Ver os modelos</a>
+        <a class="btn ghost" href="#guia">Guia de uso</a>
       </div>
     </div>
     <figure><img src="assets/banner.jpg" alt="Banner: qual modelo de IA usar para cada tarefa"></figure>
   </div>
 </header>
 
-<section id="oque"><div class="wrap">
-  <span class="chip">O que é</span>
-  <h2>Um catálogo prático, não um ranking de benchmark</h2>
-  <p class="sub">Muitos modelos chegaram ao mesmo tempo. Este repositório organiza o que usar em cada situação, com regras simples para decidir e revisar a escolha.</p>
-  <div class="grid g3">
-    <div class="card"><h3>🧭 Uma pilha por tarefa</h3><p>Planejar, uso geral, executar, trabalho braçal, segunda opinião: cada papel tem um modelo e um nível de esforço.</p></div>
-    <div class="card"><h3>🗂️ Fichas padronizadas</h3><p>Cada modelo tem uma ficha com cabeçalho YAML (status, melhor para, evitar para, esforço) — fácil de transformar em skill.</p></div>
-    <div class="card"><h3>🧪 Teste nas suas tarefas</h3><p>Benchmark não decide. Uma bateria de casos reais e a regra da "lua de mel" evitam trocar a pilha no impulso.</p></div>
-  </div>
+<section id="visao"><div class="wrap">
+  <span class="chip">Visão rápida</span>
+  <h2>Cada modelo em uma linha</h2>
+  <p class="sub">Clique em um modelo para a explicação completa, em linguagem simples.</p>
+  <div class="grid g3"><a class="qcard" href="modelos/#opus"><span class="n">🟠 Claude Opus 5.5</span><span class="r">Uso geral — o principal</span><p>O melhor para o dia a dia: rápido, direto, econômico em tokens e excelente em projetos complexos.</p></a><a class="qcard" href="modelos/#astra"><span class="n">🔷 GPT-6 Astra</span><span class="r">Planejamento e problemas difíceis</span><p>O modelo para pensar antes de fazer: planejar, decidir arquitetura e atacar o que é realmente difícil.</p></a><a class="qcard" href="modelos/#sol"><span class="n">☀️ GPT-6 Sol</span><span class="r">Execução com bom custo</span><p>Bom e econômico em tokens, mas abaixo do Astra no que é exigente. Brilha quando a tarefa já está bem definida.</p></a><a class="qcard" href="modelos/#luna"><span class="n">🌙 GPT-6 Luna</span><span class="r">Trabalho braçal</span><p>O executor para tarefas repetitivas, claras e sem ambiguidade. Tem dois ritmos: leve e pesado.</p></a><a class="qcard" href="modelos/#fable"><span class="n">💎 Claude Fable 5.1</span><span class="r out">Perdeu espaço</span><p>Muito capaz, mas consome muitos tokens — e o Opus 5.5 passou a entregar o mesmo ou mais por bem menos.</p></a><a class="qcard" href="modelos/#grok"><span class="n">✖️ Grok 4.7</span><span class="r out">Rebaixamento</span><p>Experiência ruim nos testes de uso e inferior à versão anterior (4.6).</p></a><a class="qcard" href="modelos/#sonnet"><span class="n">➖ Claude Sonnet 5 · Haiku 4.5</span><span class="r out">Pular na pilha Claude</span><p>O Sonnet 5 gasta demais por tarefa; o Haiku atual é fraco. Dentro do Claude, use o Opus 5.5 em esforço baixo.</p></a></div>
+  <div class="rule"><h3>⚖️ Regra principal: não confie só em benchmarks</h3><p><strong>Teste os modelos nas suas próprias tarefas.</strong></p><p>Cuidado com o efeito <strong>lua de mel</strong>: modelos novos parecem incríveis nos primeiros dias. Espere uma semana, observe estabilidade, qualidade e custo antes de mudar toda a sua pilha.</p></div>
 </div></section>
 
 <section id="pilha"><div class="wrap">
-  <span class="chip">A pilha atual</span>
+  <span class="chip">A pilha hoje</span>
   <h2>Quem faz o quê</h2>
-  <p class="sub">Uso via assinaturas (plano Claude + plano Codex). "Custo" aqui é quanto da cota cada modelo consome.</p>
-  <div class="grid g3">
-    <div class="card"><div class="num">1</div><h3>Planejar e problemas difíceis</h3><p><strong>GPT-6 Astra</strong> · esforço médio–alto. Arquitetura, "jogar guerra", casos exigentes.</p></div>
-    <div class="card"><div class="num">2</div><h3>Uso geral e projetos complexos</h3><p><strong>Claude Opus 5.5</strong> · esforço baixo. Rápido, direto, econômico, pede pouca instrução.</p></div>
-    <div class="card"><div class="num">3</div><h3>Criativo, design, vídeo, navegador</h3><p><strong>Claude Opus 5.5</strong> · baixo–médio. Acerta de primeira onde o gosto importa.</p></div>
-    <div class="card"><div class="num">4</div><h3>Executar um plano pronto</h3><p><strong>GPT-6 Sol</strong> · médio–alto. Bom custo quando a tarefa já está bem definida.</p></div>
-    <div class="card"><div class="num">5</div><h3>Revisar e consertar código</h3><p><strong>GPT-6 Sol</strong> · médio–alto. Forte quando há critério claro (testes que passam ou falham).</p></div>
-    <div class="card"><div class="num">6</div><h3>Trabalho braçal</h3><p><strong>GPT-6 Luna</strong> · Low para o simples e rápido; High / X-High para o pesado. Só tarefa sem ambiguidade.</p></div>
-    <div class="card"><div class="num">7</div><h3>Muitas subtarefas em paralelo</h3><p><strong>Opus 5.5 orquestra</strong>, Sol ou Luna executam. Julgamento uma vez, execução barata várias vezes.</p></div>
-    <div class="card"><div class="num">8</div><h3>Caso ambíguo</h3><p><strong>Astra propõe, Opus 5.5 revisa.</strong> Duas visões baratas valem mais que uma cara.</p></div>
-    <div class="card"><div class="num">✕</div><h3>Fora da pilha</h3><p>Grok 4.7 (pior que o 4.6) · Fable 5.1 (caro, superado pelo Opus 5.5) · Sonnet 5 e Haiku 4.5 (custo-benefício fraco).</p></div>
-  </div>
+  <p class="sub">Uso via assinaturas (plano Claude + plano Codex). “Custo” aqui é quanto da cota cada modelo consome.</p>
+  <div class="stack"><div>Planejamento e problemas difíceis</div><div class="m">GPT-6 Astra</div><div>Uso geral e projetos complexos</div><div class="m">Opus 5.5</div><div>Execução econômica</div><div class="m">GPT-6 Sol</div><div>Tarefas repetitivas</div><div class="m">GPT-6 Luna</div></div>
+  <div class="grid g3" style="margin-top:22px"><div class="card"><div class="num">1</div><h3>Planejar e problemas difíceis</h3><p><strong>GPT-6 Astra</strong> · esforço médio–alto. Arquitetura, simular cenários, casos exigentes.</p></div><div class="card"><div class="num">2</div><h3>Uso geral e projetos complexos</h3><p><strong>Claude Opus 5.5</strong> · esforço baixo. Rápido, direto, econômico, pede pouca instrução.</p></div><div class="card"><div class="num">3</div><h3>Criativo, design, vídeo, navegador</h3><p><strong>Claude Opus 5.5</strong> · baixo–médio. Acerta de primeira onde o gosto importa.</p></div><div class="card"><div class="num">4</div><h3>Executar um plano pronto</h3><p><strong>GPT-6 Sol</strong> · médio–alto. Bom custo quando a tarefa já está bem definida.</p></div><div class="card"><div class="num">5</div><h3>Revisar e consertar código</h3><p><strong>GPT-6 Sol</strong> · médio–alto. Forte quando há critério claro (testes que passam ou falham).</p></div><div class="card"><div class="num">6</div><h3>Trabalho braçal</h3><p><strong>GPT-6 Luna</strong> · Low para o simples e rápido; High / X-High para o pesado. Só tarefa sem ambiguidade.</p></div><div class="card"><div class="num">7</div><h3>Muitas subtarefas em paralelo</h3><p><strong>Opus 5.5 orquestra</strong>, Sol ou Luna executam. Julgamento uma vez, execução barata várias vezes.</p></div><div class="card"><div class="num">8</div><h3>Caso ambíguo</h3><p><strong>Astra propõe, Opus 5.5 revisa.</strong> Duas visões baratas valem mais que uma cara.</p></div><div class="card"><div class="num">✕</div><h3>Fora da pilha</h3><p>Grok 4.7 (pior que o 4.6) · Fable 5.1 (caro, superado pelo Opus 5.5) · Sonnet 5 e Haiku 4.5 (custo-benefício fraco).</p></div></div>
 </div></section>
 
 <section id="fluxo"><div class="wrap">
   <span class="chip">Como decidir</span>
   <h2>Do pedido ao modelo em quatro perguntas</h2>
   <p class="sub">Olhe para o passo mais difícil da tarefa, não para a tarefa inteira.</p>
-  <div class="flow">
-    <span>Qual o passo mais difícil?</span><span class="arr">→</span>
-    <span>Menor modelo que resolve</span><span class="arr">→</span>
-    <span>Menor esforço que cobre o risco</span><span class="arr">→</span>
-    <span>Confere o resultado</span><span class="arr">→</span>
-    <span>Anota no log</span>
-  </div>
-  <div class="grid g3" style="margin-top:26px">
-    <div class="card"><h3>🚫 Sem lealdade</h3><p>Vá para onde você é melhor atendido — time Claude ou time Codex, tanto faz.</p></div>
-    <div class="card"><h3>📈 Não pague pelo topo</h3><p>Acima do nível "alto" de esforço não houve ganho real. Suba só com evidência.</p></div>
-    <div class="card"><h3>🍯 Lua de mel</h3><p>Todo modelo novo parece ótimo nos primeiros dias. Espere uma semana antes de trocar a pilha.</p></div>
-    <div class="card"><h3>🎯 Cota por resultado</h3><p>O modelo que gasta mais cota mas acerta de primeira pode sair mais barato que quatro tentativas no econômico.</p></div>
-    <div class="card"><h3>📁 Um agente, uma pasta</h3><p>Dois agentes no mesmo repositório se atropelam. Isole cada um e diga no prompt onde ele pode escrever.</p></div>
-    <div class="card"><h3>🧪 Teste você mesmo</h3><p>Três tarefas reais, dois modelos, mesmo prompt. Trinta minutos valem mais que qualquer benchmark.</p></div>
-  </div>
+  <div class="flow"><span>Qual o passo mais difícil?</span><span class="arr">→</span><span>Menor modelo que resolve</span><span class="arr">→</span><span>Menor esforço que cobre o risco</span><span class="arr">→</span><span>Confere o resultado</span><span class="arr">→</span><span>Anota no log</span></div>
+  <div class="grid g3" style="margin-top:26px"><div class="card"><h3>🚫 Sem lealdade</h3><p>Vá para onde você é melhor atendido — time Claude ou time Codex, tanto faz.</p></div><div class="card"><h3>📈 Não pague pelo topo</h3><p>Acima do nível “alto” de esforço não houve ganho real. Suba só com evidência.</p></div><div class="card"><h3>🍯 Lua de mel</h3><p>Todo modelo novo parece ótimo nos primeiros dias. Espere uma semana antes de trocar a pilha.</p></div><div class="card"><h3>🎯 Cota por resultado</h3><p>O modelo que gasta mais cota mas acerta de primeira pode sair mais barato que quatro tentativas no econômico.</p></div><div class="card"><h3>📁 Um agente, uma pasta</h3><p>Dois agentes no mesmo repositório se atropelam. Isole cada um e diga no prompt onde ele pode escrever.</p></div><div class="card"><h3>🧪 Teste você mesmo</h3><p>Três tarefas reais, dois modelos, mesmo prompt. Trinta minutos valem mais que qualquer benchmark.</p></div></div>
 </div></section>
 
 <section id="pre"><div class="wrap">
   <span class="chip">Pré-requisitos</span>
   <h2>O que você precisa</h2>
   <p class="sub">Nada para instalar além das ferramentas que você já usa.</p>
-  <div class="grid g3">
-    <div class="card"><h3>Assinatura Claude</h3><p>Claude Code ou Claude Desktop, para o Opus 5.5.</p><pre><span class="c"># ver consumo da cota</span>
-<span class="k">/usage</span></pre></div>
-    <div class="card"><h3>Assinatura Codex</h3><p>Codex CLI ou Codex Desktop, para GPT-6 Astra, Sol e Luna.</p><pre><span class="k">codex</span>  <span class="c"># abre a sessão</span></pre></div>
-    <div class="card"><h3>O repositório</h3><p>Fichas, regras e prompts em Markdown.</p><pre><span class="k">git clone</span> <span class="s">https://github.com/inematds/modelos</span></pre></div>
-  </div>
+  <div class="grid g3"><div class="card"><h3>Assinatura Claude</h3><p>Claude Code ou Claude Desktop, para o Opus 5.5.</p><pre><span class="c"># ver consumo da cota</span>
+<span class="k">/usage</span></pre></div><div class="card"><h3>Assinatura Codex</h3><p>Codex CLI ou Codex Desktop, para GPT-6 Astra, Sol e Luna.</p><pre><span class="k">codex</span>  <span class="c"># abre a sessão</span></pre></div><div class="card"><h3>O repositório</h3><p>Fichas, regras e prompts em Markdown.</p><pre><span class="k">git clone</span> <span class="s">https://github.com/inematds/modelos</span></pre></div></div>
 </div></section>
 
 <section id="guia"><div class="wrap">
   <span class="chip">Guia de uso · passo a passo</span>
   <h2>Como usar no dia a dia</h2>
   <p class="sub">Da consulta rápida até transformar o catálogo numa skill.</p>
-
-  <div class="step"><div class="b">1</div><div>
-    <h3>Consulte a pilha</h3>
-    <p>A tabela do README é a orientação rápida. Na dúvida, abra a ficha do modelo.</p>
-<pre><span class="k">cat</span> README.md               <span class="c"># pilha por tarefa + regras</span>
-<span class="k">cat</span> modelos/opus-5-5.md     <span class="c"># ficha: melhor para, evitar para, esforço</span></pre>
-  </div></div>
-
-  <div class="step"><div class="b">2</div><div>
-    <h3>Use um padrão pronto</h3>
-    <p>Para fluxos com mais de um modelo, copie o prompt correspondente.</p>
-<pre>prompts/planejar-executar.md     <span class="c"># Astra planeja → Sol executa</span>
+<div class="step"><div class="b">1</div><div><h3>Consulte a pilha</h3><p>A tabela do README é a orientação rápida. Na dúvida, abra a ficha do modelo.</p><pre><span class="k">cat</span> README.md               <span class="c"># pilha por tarefa + regras</span>
+<span class="k">cat</span> modelos/opus-5-5.md     <span class="c"># ficha: melhor para, evitar para, esforço</span></pre></div></div>
+<div class="step"><div class="b">2</div><div><h3>Use um padrão pronto</h3><p>Para fluxos com mais de um modelo, copie o prompt correspondente.</p><pre>prompts/planejar-executar.md     <span class="c"># Astra planeja → Sol executa</span>
 prompts/segunda-opiniao.md       <span class="c"># Astra propõe → Opus 5.5 revisa</span>
 prompts/orquestrador-workers.md  <span class="c"># Opus 5.5 distribui → Sol/Luna fazem</span>
-prompts/tarefa-bracal.md         <span class="c"># Luna em lote, sem ambiguidade</span></pre>
-  </div></div>
-
-  <div class="step"><div class="b">3</div><div>
-    <h3>Registre o que observar</h3>
-    <p>Uma linha por observação, mais recente no topo. É isso que torna a regra da lua de mel prática.</p>
-<pre><span class="c"># log.md</span>
-| data | modelo | tarefa | resultado | fonte |</pre>
-  </div></div>
-
-  <div class="step"><div class="b">4</div><div>
-    <h3>Faça o teste rápido</h3>
-    <p>Três tarefas reais (simples, média, difícil), mesmo prompt no modelo atual e no candidato. Repita a difícil depois de uma semana.</p>
-<pre>regras.md             <span class="c"># protocolo de 30 minutos</span>
-avaliacao/bateria.md  <span class="c"># 8 casos reais, nota 0–3, cota gasta</span></pre>
-  </div></div>
-
-  <div class="step"><div class="b">5</div><div>
-    <h3>Vire skill quando a pilha estabilizar</h3>
-    <p>Há um rascunho pronto que responde "qual modelo uso pra isso?".</p>
-<pre><span class="k">cp -r</span> skills/escolher-modelo ~/.claude/skills/</pre>
-  </div></div>
+prompts/tarefa-bracal.md         <span class="c"># Luna em lote, sem ambiguidade</span></pre></div></div>
+<div class="step"><div class="b">3</div><div><h3>Registre o que observar</h3><p>Uma linha por observação, mais recente no topo. É isso que torna a regra da lua de mel prática.</p><pre><span class="c"># log.md</span>
+| data | modelo | tarefa | resultado | fonte |</pre></div></div>
+<div class="step"><div class="b">4</div><div><h3>Faça o teste rápido</h3><p>Três tarefas reais (simples, média, difícil), mesmo prompt no modelo atual e no candidato. Repita a difícil depois de uma semana.</p><pre>regras.md             <span class="c"># protocolo de 30 minutos</span>
+avaliacao/bateria.md  <span class="c"># 8 casos reais, nota 0–3, cota gasta</span></pre></div></div>
+<div class="step"><div class="b">5</div><div><h3>Vire skill quando a pilha estabilizar</h3><p>Há um rascunho pronto que responde “qual modelo uso pra isso?”.</p><pre><span class="k">cp -r</span> skills/escolher-modelo ~/.claude/skills/</pre></div></div>
 </div></section>
 
 <section id="padroes"><div class="wrap">
   <span class="chip">Padrões de uso</span>
   <h2>Três combinações que funcionam</h2>
   <p class="sub">A parte cara (julgamento) acontece uma vez; a parte longa (execução) sai barata.</p>
-  <div class="grid g3">
-    <div class="card"><h3>🗺️ Planejar → executar</h3><p>Astra escreve um plano com passos verificáveis; Sol executa sem mudar o plano e para se algo sair do roteiro.</p></div>
-    <div class="card"><h3>⚖️ Segunda opinião</h3><p>Astra propõe; Opus 5.5 revisa como cético. Se concordam, siga. Se discordam, a divergência é o que você decide.</p></div>
-    <div class="card"><h3>🎛️ Orquestrador + workers</h3><p>Opus 5.5 quebra o trabalho e revisa; Sol ou Luna fazem cada parte na sua própria pasta.</p></div>
-  </div>
+  <div class="grid g3"><div class="card"><h3>🗺️ Planejar → executar</h3><p>Astra escreve um plano com passos verificáveis; Sol executa sem mudar o plano e para se algo sair do roteiro.</p></div><div class="card"><h3>⚖️ Segunda opinião</h3><p>Astra propõe; Opus 5.5 revisa como cético. Se concordam, siga. Se discordam, a divergência é o que você decide.</p></div><div class="card"><h3>🎛️ Orquestrador + workers</h3><p>Opus 5.5 quebra o trabalho e revisa; Sol ou Luna fazem cada parte na sua própria pasta.</p></div></div>
 </div></section>
 
 <section id="roadmap"><div class="wrap">
   <span class="chip">Próximos passos</span>
   <h2>O que vem depois</h2>
   <p class="sub">A pilha é um ponto de partida e será revista com uso real.</p>
-  <div class="phase"><div class="tag">Agora</div><div class="d"><strong>Catálogo publicado</strong><span>Pilha, fichas, regras, prompts e bateria de casos.</span></div></div>
-  <div class="phase"><div class="tag">30/09</div><div class="d"><strong>Revisão pós-lua de mel</strong><span>Confirmar ou ajustar a pilha depois de uma semana de uso.</span></div></div>
-  <div class="phase"><div class="tag">Depois</div><div class="d"><strong>Skill de escolha de modelo</strong><span>Instalar a skill escolher-modelo ou integrar a pilha ao roteador de modelos existente.</span></div></div>
+  <div class="phase"><div class="tag">Agora</div><div class="d"><strong>Catálogo publicado</strong><span>Modelos explicados, pilha, fichas, regras, prompts e bateria de casos.</span></div></div><div class="phase"><div class="tag">30/09</div><div class="d"><strong>Revisão pós-lua de mel</strong><span>Confirmar ou ajustar a pilha depois de uma semana de uso.</span></div></div><div class="phase"><div class="tag">Depois</div><div class="d"><strong>Skill de escolha de modelo</strong><span>Instalar a skill escolher-modelo ou integrar a pilha ao roteador de modelos existente.</span></div></div>
 </div></section>
 
 <footer>
   <div class="wrap">
     <div class="pill">Markdown</div><div class="pill">YAML</div><div class="pill">Claude Code</div><div class="pill">Codex</div>
     <p style="margin-top:18px">modelos · guia prático de modelos de IA ·
-      <a href="https://github.com/inematds/modelos">inematds/modelos</a> ·
-      <a href="en/">English</a> ·
+      <a href="https://github.com/inematds/modelos">inematds/modelos</a> · <a href="en/">English</a> · <a href="es/">Español</a> ·
       <a href="https://inema.club">INEMA.CLUB</a></p>
   </div>
 </footer>

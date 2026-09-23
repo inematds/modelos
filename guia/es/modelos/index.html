@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Los nuevos modelos de IA, explicados de forma simple</title>
+<meta name="description" content="Opus 5.5, GPT-6 Astra, Sol, Luna, Fable 5.1, Grok 4.7, Sonnet 5 y Haiku: para qué sirve cada uno, cuándo usarlo y cuándo evitarlo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0c10; --bg2:#14141b; --card:#16161e; --line:#272730;
+    --txt:#e9e9ee; --mut:#9a9aa6; --amb:#E2A23B; --amb2:#f0c070; --sky:#38bdf8; --pro:#cbd5e1;
+    color-scheme:dark;
+  }
+  body.light{
+    --bg:#f6f7f9; --bg2:#eceef2; --card:#ffffff; --line:#e1e3ea;
+    --txt:#1a1a22; --mut:#5b5b68; --amb:#b9791d; --amb2:#a16207; --sky:#0369a1; --pro:#b45309;
+    color-scheme:light;
+  }
+  body.light .hero .glow{opacity:.5}
+  body.light pre{background:#0e0e14;color:#d6d6e0}
+  body.light pre .c{color:#8a8a98}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:Sora,sans-serif;line-height:1.15;margin:0}
+  a{color:var(--amb);text-decoration:none}
+  code,pre{font-family:"JetBrains Mono",monospace}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 22px}
+  .mut{color:var(--mut)} .amb{color:var(--amb)}
+  .chip{display:inline-block;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amb);font-weight:600;font-family:Sora}
+  nav{position:sticky;top:0;z-index:30;backdrop-filter:blur(12px);background:rgba(12,12,16,.78);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;gap:22px;height:60px}
+  nav .brand{display:flex;align-items:center;gap:8px;font-family:Sora;font-weight:800;letter-spacing:-.02em;color:var(--amb)}
+  nav .brand .emoji{font-size:1.25rem}
+  nav .sep{color:var(--mut);opacity:.45}
+  nav .inema{color:var(--sky);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .inema:hover{filter:brightness(1.15)}
+  nav .pro{color:var(--pro);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .pro:hover{filter:brightness(1.15)}
+  nav .clubpro{display:inline-flex;align-items:center;gap:6px}
+  nav .links{margin-left:auto;display:flex;align-items:center;gap:20px;font-size:.92rem}
+  nav .links a.sec{color:var(--mut)} nav .links a.sec:hover{color:var(--txt)}
+  .tgl{background:var(--bg2);border:1px solid var(--line);color:var(--txt);width:38px;height:38px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:1.05rem}
+  .tgl:hover{border-color:var(--amb)}
+  .btn{display:inline-block;background:var(--amb);color:#1a1206;font-weight:600;padding:.6em 1.05em;border-radius:10px;font-family:Sora}
+  .btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
+  @media(max-width:760px){nav .links a.sec{display:none}}
+  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero .glow{position:absolute;inset:-40% -20% auto auto;width:70%;height:600px;background:radial-gradient(closest-side,rgba(226,162,59,.22),transparent 70%);pointer-events:none}
+  .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:74px 22px}
+  .hero h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800;letter-spacing:-.025em}
+  .hero p.lead{font-size:1.18rem;color:var(--mut);margin:1.1em 0 1.6em;max-width:34ch}
+  .hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+  .hero figure{margin:0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000}
+  .hero figure img{width:100%;display:block}
+  @media(max-width:780px){.hero .wrap{grid-template-columns:1fr;padding:48px 22px}}
+  section{padding:62px 0;border-bottom:1px solid var(--line)}
+  section h2{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:800;letter-spacing:-.02em}
+  section .sub{color:var(--mut);margin:.6em 0 2em;max-width:62ch}
+  .grid{display:grid;gap:16px}
+  .g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:820px){.g3,.g4{grid-template-columns:1fr 1fr}}
+  @media(max-width:540px){.g2,.g3,.g4{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .card h3{font-size:1.05rem;margin-bottom:.4em}
+  .card p{color:var(--mut);font-size:.92rem;margin:0}
+  .num{display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;border-radius:8px;background:rgba(226,162,59,.14);color:var(--amb);font-family:Sora;font-weight:800;font-size:.9rem;margin-bottom:.7em}
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+  .flow span{background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:.45em .9em;font-size:.85rem;font-family:Sora;font-weight:600}
+  .flow .arr{color:var(--amb);border:none;background:none;padding:0 .1em}
+  pre{background:#0a0a0e;border:1px solid var(--line);border-radius:12px;padding:16px 18px;overflow:auto;font-size:.86rem;line-height:1.6;color:#d6d6e0}
+  pre .c{color:#6f6f7c} pre .k{color:var(--amb2)} pre .s{color:#9ece6a}
+  .step{display:grid;grid-template-columns:46px 1fr;gap:16px;margin-bottom:26px}
+  .step .b{width:46px;height:46px;border-radius:12px;background:var(--amb);color:#1a1206;font-family:Sora;font-weight:800;font-size:1.25rem;display:flex;align-items:center;justify-content:center}
+  .step h3{font-size:1.12rem;margin-bottom:.3em}
+  .step p{color:var(--mut);margin:.2em 0 .7em}
+  .ex{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:680px){.ex{grid-template-columns:1fr}}
+  .ex figure{margin:0;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  .ex figure img{width:100%;display:block}
+  .ex figcaption{padding:12px 14px;font-size:.88rem;color:var(--mut);background:var(--card)}
+  .phase{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .phase:last-child{border:none}
+  .phase .tag{flex:0 0 92px;font-family:Sora;font-weight:800;color:var(--amb)}
+  .phase .d strong{display:block;margin-bottom:.2em}
+  .phase .d span{color:var(--mut);font-size:.92rem}
+  footer{padding:46px 0;text-align:center;color:var(--mut);font-size:.9rem}
+  .pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:.3em .8em;font-size:.78rem;color:var(--mut);margin:0 4px}
+  /* extras modelos */
+  .mcard{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 24px}
+  .mcard h3{font-size:1.25rem;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .mcard .role{font-family:Sora;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;padding:.3em .7em;border-radius:999px;border:1px solid var(--line);color:var(--amb)}
+  .mcard .role.out{color:var(--mut)}
+  .mcard .one{font-size:1.02rem;margin:.7em 0 .4em}
+  .mcard .like{color:var(--mut);font-style:italic;margin:0 0 .9em}
+  .mcard ul{margin:.2em 0 .8em 1.1em;padding:0;color:var(--mut);font-size:.93rem}
+  .mcard .lbl{font-family:Sora;font-weight:600;font-size:.82rem;color:var(--txt);margin-top:.6em}
+  .mcard .eff{font-family:"JetBrains Mono",monospace;font-size:.82rem;color:var(--amb2)}
+  .qcard{display:block;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;color:var(--txt)}
+  .qcard:hover{border-color:var(--amb)}
+  .qcard .n{font-family:Sora;font-weight:800}
+  .qcard .r{display:block;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--amb);margin:.2em 0 .5em;font-family:Sora}
+  .qcard .r.out{color:var(--mut)}
+  .qcard p{margin:0;color:var(--mut);font-size:.9rem}
+  .rule{border:1px solid var(--amb);background:rgba(226,162,59,.08);border-radius:16px;padding:24px 26px;margin-top:22px}
+  .rule h3{font-size:1.3rem;margin-bottom:.4em}
+  .rule p{margin:.3em 0;color:var(--txt)}
+  .stack{display:grid;grid-template-columns:1fr auto;gap:0;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .stack div{padding:14px 18px;border-bottom:1px solid var(--line);background:var(--card)}
+  .stack div:nth-last-child(-n+2){border-bottom:none}
+  .stack .m{font-family:Sora;font-weight:800;color:var(--amb);text-align:right}
+  .langs a{color:var(--mut);font-family:Sora;font-weight:600;font-size:.85rem;margin:0 3px}
+  .langs a.on{color:var(--amb)}
+</style>
+<link rel="alternate" hreflang="pt-BR" href="https://inematds.github.io/modelos/guia/modelos/">
+<link rel="alternate" hreflang="en" href="https://inematds.github.io/modelos/guia/en/modelos/">
+<link rel="alternate" hreflang="es" href="https://inematds.github.io/modelos/guia/es/modelos/">
+</head>
+<body>
+
+<nav><div class="wrap">
+  <a class="brand" href="../../es/"><span class="emoji">🧭</span> modelos</a>
+  <span class="sep">|</span>
+  <span class="clubpro">
+    <a class="inema" href="https://inema.club" target="_blank" rel="noopener">INEMA.CLUB</a>
+    <span class="sep">-</span>
+    <a class="pro" href="https://inema.pro" target="_blank" rel="noopener">PRO</a>
+  </span>
+  <div class="links">
+    <a class="sec" href="../../es/modelos/">Modelos</a>
+    <a class="sec" href="../../es/#pilha">Stack</a>
+    <a class="sec" href="../../es/#guia">Guía de uso</a>
+    <a class="sec" href="../../es/#padroes">Patrones</a>
+    <span class="langs"><a class="" href="../../modelos/" hreflang="pt-BR" lang="pt-BR">PT</a> <a class="" href="../../en/modelos/" hreflang="en" lang="en">EN</a> <a class="on" href="../../es/modelos/" hreflang="es" lang="es">ES</a></span>
+    <button class="tgl" id="themeToggle" aria-label="Cambiar tema" title="Cambiar tema">🌙</button>
+    <a class="btn" href="https://github.com/inematds/modelos" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</div></nav>
+
+<header class="hero" id="top">
+  <div class="glow"></div>
+  <div class="wrap">
+    <div>
+      <span class="chip">Los modelos, en lenguaje simple</span>
+      <h1>Para qué sirve <span class="amb">cada modelo</span></h1>
+      <p class="lead">Llegaron muchos modelos a la vez y es fácil sentirse abrumado. Aquí está, sin jerga, lo que cada uno hace bien, cuándo usarlo y cuándo evitarlo.</p>
+      <div class="cta">
+        <a class="btn" href="#opus">Opus 5.5</a>
+        <a class="btn ghost" href="../">Volver a la guía</a>
+      </div>
+    </div>
+    <figure><img src="../../assets/banner-es.jpg" alt="Banner: qué modelo de IA usar para cada tarea"></figure>
+  </div>
+</header>
+
+<section id="modelos"><div class="wrap">
+  <div class="grid g2">
+  <div class="mcard" id="opus">
+    <h3>🟠 Claude Opus 5.5 <span class="role">En el stack · Uso general — el principal</span></h3>
+    <p class="one">El mejor para el día a día: rápido, directo, económico en tokens y excelente en proyectos complejos.</p>
+    <p class="like">Piensa en él como el profesional sénior que resuelve casi todo con poca explicación.</p>
+    <div class="lbl">Úsalo para</div><ul><li>Trabajo general y proyectos grandes</li><li>Sitios web, video, diseño y tareas creativas</li><li>Investigación y uso del navegador</li><li>Segunda opinión en casos ambiguos</li></ul>
+    <div class="lbl">Evítalo para</div><ul><li>Arreglos de código repetitivos con criterio claro — Sol lo hace por menos</li></ul>
+    <div class="lbl">Esfuerzo: <span class="eff">esfuerzo bajo (necesita pocas instrucciones)</span></div>
+  </div>
+  <div class="mcard" id="astra">
+    <h3>🔷 GPT-6 Astra <span class="role">En el stack · Planificación y problemas difíciles</span></h3>
+    <p class="one">El modelo para pensar antes de hacer: planificar, decidir arquitectura y atacar lo realmente difícil.</p>
+    <p class="like">Piensa en él como el arquitecto: dibuja el plan que otro va a ejecutar.</p>
+    <div class="lbl">Úsalo para</div><ul><li>Planificar proyectos y simular escenarios</li><li>Decisiones difíciles y de arquitectura</li><li>Primera propuesta en un caso ambiguo (con Opus revisando)</li></ul>
+    <div class="lbl">Evítalo para</div><ul><li>Trabajo repetitivo y pesado — un desperdicio</li></ul>
+    <div class="lbl">Esfuerzo: <span class="eff">esfuerzo medio a alto (por encima no hubo ganancia)</span></div>
+  </div>
+  <div class="mcard" id="sol">
+    <h3>☀️ GPT-6 Sol <span class="role">En el stack · Ejecución con buen costo</span></h3>
+    <p class="one">Bueno y económico en tokens, pero por debajo de Astra en lo exigente. Brilla cuando la tarea ya está bien definida.</p>
+    <p class="like">Piensa en él como el ejecutor eficiente: sigue el plan al pie de la letra.</p>
+    <div class="lbl">Úsalo para</div><ul><li>Ejecutar un plan listo (planificar con Astra → ejecutar con Sol)</li><li>Revisar, correr y arreglar código con pruebas</li><li>Worker de un orquestador Opus 5.5</li></ul>
+    <div class="lbl">Evítalo para</div><ul><li>Tareas creativas, diseño, video y navegador</li><li>Problemas difíciles sin un plan</li></ul>
+    <div class="lbl">Esfuerzo: <span class="eff">esfuerzo medio a alto</span></div>
+  </div>
+  <div class="mcard" id="luna">
+    <h3>🌙 GPT-6 Luna <span class="role">En el stack · Trabajo pesado</span></h3>
+    <p class="one">El ejecutor para tareas repetitivas, claras y sin ambigüedad. Tiene dos ritmos: ligero y pesado.</p>
+    <p class="like">Piensa en él como el asistente que hace el volumen, siempre que la instrucción sea exacta.</p>
+    <div class="lbl">Úsalo para</div><ul><li>Luna Low: tareas simples y rápidas (renombrar, extraer, formatear)</li><li>Luna High / X-High: trabajo operativo pesado, lotes grandes</li></ul>
+    <div class="lbl">Evítalo para</div><ul><li>Cualquier cosa que requiera interpretar lo que quisiste decir</li></ul>
+    <div class="lbl">Esfuerzo: <span class="eff">Low para lo simple; High / X-High para lo pesado</span></div>
+  </div>
+  <div class="mcard" id="fable">
+    <h3>💎 Claude Fable 5.1 <span class="role out">Fuera del stack · Perdió espacio</span></h3>
+    <p class="one">Muy capaz, pero consume muchos tokens — y Opus 5.5 ahora entrega lo mismo o más por mucho menos.</p>
+    <p class="like">Piensa en él como el consultor caro al que solo llamas si nada más funciona.</p>
+    <div class="lbl">Úsalo para</div><ul><li>Para un caso ambiguo, prefiere Astra + Opus 5.5 como segunda opinión</li></ul>
+    <div class="lbl">Evítalo para</div><ul><li>Uso general — pesa demasiado en la cuota de la suscripción</li></ul>
+    <div class="lbl">Esfuerzo: <span class="eff">fuera del stack</span></div>
+  </div>
+  <div class="mcard" id="grok">
+    <h3>✖️ Grok 4.7 <span class="role out">Fuera del stack · Un paso atrás</span></h3>
+    <p class="one">Mala experiencia en el uso y peor que la versión anterior (4.6).</p>
+    <p class="like">Si necesitas Grok, el 4.6 era mejor.</p>
+    
+    <div class="lbl">Evítalo para</div><ul><li>Todo, por ahora</li></ul>
+    <div class="lbl">Esfuerzo: <span class="eff">fuera del stack</span></div>
+  </div>
+  <div class="mcard" id="sonnet">
+    <h3>➖ Claude Sonnet 5 · Haiku 4.5 <span class="role out">Fuera del stack · Saltar en el stack de Claude</span></h3>
+    <p class="one">Sonnet 5 gasta demasiado por tarea; el Haiku actual es débil. Dentro de Claude, usa Opus 5.5 con esfuerzo bajo.</p>
+    <p class="like">Su papel pasó a otros: Luna hace el trabajo pesado, Opus en bajo hace lo general.</p>
+    <div class="lbl">Úsalo para</div><ul><li>Haiku: solo como subagente muy barato en un flujo 100% Claude — prueba antes</li></ul>
+    <div class="lbl">Evítalo para</div><ul><li>Stack principal</li></ul>
+    <div class="lbl">Esfuerzo: <span class="eff">fuera del stack</span></div>
+  </div>
+  </div>
+</div></section>
+
+<section id="pilha"><div class="wrap">
+  <span class="chip">El stack hoy</span>
+  <h2>Mi stack hoy</h2>
+  <p class="sub">Cuatro papeles, cuatro modelos.</p>
+  <div class="stack"><div>Planificación y problemas difíciles</div><div class="m">GPT-6 Astra</div><div>Uso general y proyectos complejos</div><div class="m">Opus 5.5</div><div>Ejecución económica</div><div class="m">GPT-6 Sol</div><div>Tareas repetitivas</div><div class="m">GPT-6 Luna</div></div>
+  <div class="rule"><h3>⚖️ Regla principal: no confíes solo en los benchmarks</h3><p><strong>Prueba los modelos en tus propias tareas.</strong></p><p>Cuidado con el efecto <strong>luna de miel</strong>: los modelos nuevos parecen increíbles los primeros días. Espera una semana y observa estabilidad, calidad y costo antes de cambiar todo tu stack.</p></div>
+  <div class="card" style="margin-top:22px"><h3>🌊 Si te sientes abrumado</h3><p>No estás solo. En lugar de perderte en el ruido de los benchmarks, haz una prueba rápida: tres de tus tareas reales, dos modelos, el mismo pedido. En media hora sabrás más que tras un día leyendo comparativas.</p></div>
+  <p style="margin-top:26px"><a class="btn" href="../#guia">Cómo usar esto en el día a día →</a></p>
+</div></section>
+
+<footer>
+  <div class="wrap">
+    <div class="pill">Markdown</div><div class="pill">YAML</div><div class="pill">Claude Code</div><div class="pill">Codex</div>
+    <p style="margin-top:18px">modelos · guía práctica de modelos de IA ·
+      <a href="https://github.com/inematds/modelos">inematds/modelos</a> · <a href="../../">Português</a> · <a href="../../en/">English</a> ·
+      <a href="https://inema.club">INEMA.CLUB</a></p>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var KEY='modelos-theme';
+    var b=document.body, t=document.getElementById('themeToggle');
+    if(localStorage.getItem(KEY)==='light'){ b.classList.add('light'); t.textContent='☀️'; }
+    t.addEventListener('click',function(){
+      var light=b.classList.toggle('light');
+      t.textContent=light?'☀️':'🌙';
+      localStorage.setItem(KEY, light?'light':'dark');
+    });
+  })();
+</script>
+</body>
+</html>
