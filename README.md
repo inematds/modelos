@@ -1,4 +1,6 @@
-# 🧭 modelos — qual modelo de IA usar em cada tarefa
+# 🧭 Qual Modelo de IA Usar
+
+> O modelo certo para cada tarefa · repositório `modelos`
 
 [![Qual modelo de IA usar](guia/assets/banner.jpg)](https://inematds.github.io/modelos/guia/)
 

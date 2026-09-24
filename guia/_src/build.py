@@ -13,6 +13,7 @@ REPO = "https://github.com/inematds/modelos"
 BASE = "https://inematds.github.io/modelos/guia/"
 LANGS = ["pt", "en", "es"]
 HTML_LANG = {"pt": "pt-BR", "en": "en", "es": "es"}
+BRAND = {"pt": "Qual Modelo de IA Usar", "en": "Which AI Model to Use", "es": "Qué Modelo de IA Usar"}
 BANNER = {"pt": "banner.jpg", "en": "banner-en.jpg", "es": "banner-es.jpg"}
 
 # ---------------------------------------------------------------- modelos
@@ -122,7 +123,7 @@ MODELOS = [
 # ---------------------------------------------------------------- textos
 T = {
  "pt": {
-  "title": "modelos — qual modelo de IA usar em cada tarefa",
+  "title": "Qual Modelo de IA Usar — o modelo certo para cada tarefa",
   "desc": "Guia direto para escolher entre Claude Opus 5.5, GPT-6 Astra, Sol e Luna: modelos explicados de forma simples, pilha por tarefa, regras, prompts e bateria de teste.",
   "mtitle": "Os modelos de IA novos, explicados de forma simples",
   "mdesc": "Opus 5.5, GPT-6 Astra, Sol, Luna, Fable 5.1, Grok 4.7, Sonnet 5 e Haiku: para que serve cada um, quando usar e quando evitar.",
@@ -190,7 +191,7 @@ T = {
   "m_cta": "Como usar isso no dia a dia →",
  },
  "en": {
-  "title": "modelos — which AI model to use for each task",
+  "title": "Which AI Model to Use — the right model for each task",
   "desc": "A direct guide to choosing among Claude Opus 5.5, GPT-6 Astra, Sol and Luna: models explained simply, stack per task, rules, prompts and a test battery.",
   "mtitle": "The new AI models, explained simply",
   "mdesc": "Opus 5.5, GPT-6 Astra, Sol, Luna, Fable 5.1, Grok 4.7, Sonnet 5 and Haiku: what each one is for, when to use it and when to avoid it.",
@@ -257,7 +258,7 @@ T = {
   "m_cta": "How to use this day to day →",
  },
  "es": {
-  "title": "modelos — qué modelo de IA usar en cada tarea",
+  "title": "Qué Modelo de IA Usar — el modelo correcto para cada tarea",
   "desc": "Guía directa para elegir entre Claude Opus 5.5, GPT-6 Astra, Sol y Luna: modelos explicados de forma simple, stack por tarea, reglas, prompts y batería de pruebas.",
   "mtitle": "Los nuevos modelos de IA, explicados de forma simple",
   "mdesc": "Opus 5.5, GPT-6 Astra, Sol, Luna, Fable 5.1, Grok 4.7, Sonnet 5 y Haiku: para qué sirve cada uno, cuándo usarlo y cuándo evitarlo.",
@@ -353,7 +354,7 @@ def nav(lang, kind, depth):
     return f'''<body>
 
 <nav><div class="wrap">
-  <a class="brand" href="{here}"><span class="emoji">🧭</span> modelos</a>
+  <a class="brand" href="{here}"><span class="emoji">🧭</span> {BRAND[lang]}</a>
   <span class="sep">|</span>
   <span class="clubpro">
     <a class="inema" href="https://inema.club" target="_blank" rel="noopener">INEMA.CLUB</a>
@@ -376,7 +377,7 @@ def footer(lang, depth):
 <footer>
   <div class="wrap">
     <div class="pill">Markdown</div><div class="pill">YAML</div><div class="pill">Claude Code</div><div class="pill">Codex</div>
-    <p style="margin-top:18px">modelos · {t["foot"]} ·
+    <p style="margin-top:18px">{BRAND[lang]} · {t["foot"]} ·
       <a href="{REPO}">inematds/modelos</a> · {langs} ·
       <a href="https://inema.club">INEMA.CLUB</a></p>
   </div>
