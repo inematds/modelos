@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Esforço na Prática</title>
-<meta name="description" content="Referência: o que o vídeo do Opus 5.5 por nível de esforço e o experimento do GPT-6 Astra mostram juntos — gráficos, padrões e limites dos dados.">
+<title>Effort in Practice</title>
+<meta name="description" content="Reference: what the Opus 5.5 effort-level video and the GPT-6 Astra experiment show together — charts, patterns and data limits.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -91,146 +91,146 @@
 </head>
 <body>
 <nav><div class="wrap">
-  <a class="brand" href="../">🧭 Qual Modelo de IA Usar</a>
+  <a class="brand" href="../">🧭 Which AI Model to Use</a>
   <div class="links">
     <a class="sec" href="#opus">Opus 5.5</a>
     <a class="sec" href="#astra">Astra</a>
-    <a class="sec" href="#padroes">Padrões</a>
-    <a class="sec" href="#opiniao">Opinião</a>
-    <span class="langs"><a class="on" href="./" hreflang="pt-BR">PT</a> <a href="../en/esforco/" hreflang="en">EN</a> <a href="../es/esforco/" hreflang="es">ES</a></span>
-    <button class="tgl" id="themeToggle" aria-label="Alternar tema" title="Alternar tema">🌙</button>
+    <a class="sec" href="#padroes">Patterns</a>
+    <a class="sec" href="#opiniao">Opinion</a>
+    <span class="langs"><a href="../../esforco/" hreflang="pt-BR">PT</a> <a class="on" href="./" hreflang="en">EN</a> <a href="../../es/esforco/" hreflang="es">ES</a></span>
+    <button class="tgl" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">🌙</button>
   </div>
 </div></nav>
 
 <header class="hero"><div class="wrap">
-  <span class="chip">Referência · 24/09/2026</span>
-  <h1>Esforço na prática</h1>
-  <p>Dois experimentos rodaram o mesmo pedido em todos os níveis de esforço: um com o Claude Opus 5.5 e outro com o GPT-6 Astra. Os dois mostram o mesmo padrão: o nível máximo nunca foi o preferido.</p>
-  <div class="note">Esta página é <strong>referência</strong>: não muda a pilha nem as regras do guia. São dados de terceiros, com <strong>uma rodada por nível</strong> e julgamento de uma pessoa. Fontes em texto: <a href="https://github.com/inematds/modelos/blob/main/referencias/padroes-esforco-2026-09-24.md">padroes-esforco</a> · <a href="https://www.youtube.com/watch?v=QCkHIyEPIYo">vídeo Opus 5.5</a> · <a href="https://inematds.github.io/astra-effort/guia/">astra-effort</a>.</div>
+  <span class="chip">Reference · 2026-09-24</span>
+  <h1>Effort in practice</h1>
+  <p>Two experiments ran the same request at every effort level: one with Claude Opus 5.5 and one with GPT-6 Astra. Both show the same pattern: the top level was never the preferred one.</p>
+  <div class="note">This page is a <strong>reference</strong>: it does not change the stack or the guide rules. It is third-party data, with <strong>one run per level</strong> and one person judging. Text sources: <a href="https://github.com/inematds/modelos/blob/main/referencias/padroes-esforco-2026-09-24.md">padroes-esforco</a> · <a href="https://www.youtube.com/watch?v=QCkHIyEPIYo">Opus 5.5 video</a> · <a href="https://inematds.github.io/astra-effort/guia/">astra-effort</a>.</div>
 </div></header>
 
 <section id="opus"><div class="wrap">
-  <span class="chip">Fonte A · Claude Opus 5.5</span>
-  <h2>O mesmo app 3D em seis níveis</h2>
-  <p class="sub">Tarefa: um <code>/goal</code> longo que transforma ~105 GB de gravações de um evento virtual em uma conferência 3D explorável. O autor preferiu o <strong>xhigh</strong> (“Extra” no vídeo). O max custou o dobro e teve mais bugs.</p>
+  <span class="chip">Source A · Claude Opus 5.5</span>
+  <h2>The same 3D app at six levels</h2>
+  <p class="sub">Task: a long <code>/goal</code> that turns ~105 GB of recordings from a virtual event into an explorable 3D conference. The author preferred <strong>xhigh</strong> (“Extra” in the video). Max cost twice as much and had more bugs.</p>
 
   <div class="grid g3" style="margin-bottom:16px">
-    <div class="card kpi"><div class="v">12,9×</div><div class="l">custo do max em relação ao low</div></div>
-    <div class="card kpi"><div class="v">2,3×</div><div class="l">aumento de checks no mesmo intervalo</div></div>
-    <div class="card kpi"><div class="v">1 / 6</div><div class="l">execuções que fizeram alguma pergunta (0 usaram subagente)</div></div>
+    <div class="card kpi"><div class="v">12.9×</div><div class="l">cost of max relative to low</div></div>
+    <div class="card kpi"><div class="v">2.3×</div><div class="l">increase in checks over the same range</div></div>
+    <div class="card kpi"><div class="v">1 / 6</div><div class="l">runs that asked any question (0 used a subagent)</div></div>
   </div>
 
   <div class="grid g2">
     <div class="card">
-      <h3>Quanto cada métrica cresce (low = 1×)</h3>
-      <p style="margin-bottom:12px">Custo e tempo disparam; checks quase não se mexem.</p>
+      <h3>How much each metric grows (low = 1×)</h3>
+      <p style="margin-bottom:12px">Cost and time shoot up; checks barely move.</p>
       <div class="legend" id="lgA"></div>
       <div class="chart" id="chA"></div>
-      <details><summary>Ver tabela</summary><div class="tw"><table>
-        <tr><th>Nível</th><th>Tokens</th><th>Custo</th><th>Tempo</th><th>Checks</th></tr>
-        <tr><td>low</td><td>1,00</td><td>1,00</td><td>1,00</td><td>1,00</td></tr>
-        <tr><td>medium</td><td>2,19</td><td>3,18</td><td>4,37</td><td>1,05</td></tr>
-        <tr><td>high</td><td>2,93</td><td>4,17</td><td>4,01</td><td>1,00</td></tr>
-        <tr class="win"><td>xhigh ★</td><td>3,79</td><td>6,63</td><td>5,38</td><td>1,55</td></tr>
-        <tr><td>max</td><td>6,18</td><td>12,88</td><td>8,85</td><td>2,32</td></tr>
-        <tr><td>ultracode</td><td>—</td><td>4,78</td><td>5,68</td><td>1,91</td></tr>
+      <details><summary>Show table</summary><div class="tw"><table>
+        <tr><th>Level</th><th>Tokens</th><th>Cost</th><th>Time</th><th>Checks</th></tr>
+        <tr><td>low</td><td>1.00</td><td>1.00</td><td>1.00</td><td>1.00</td></tr>
+        <tr><td>medium</td><td>2.19</td><td>3.18</td><td>4.37</td><td>1.05</td></tr>
+        <tr><td>high</td><td>2.93</td><td>4.17</td><td>4.01</td><td>1.00</td></tr>
+        <tr class="win"><td>xhigh ★</td><td>3.79</td><td>6.63</td><td>5.38</td><td>1.55</td></tr>
+        <tr><td>max</td><td>6.18</td><td>12.88</td><td>8.85</td><td>2.32</td></tr>
+        <tr><td>ultracode</td><td>—</td><td>4.78</td><td>5.68</td><td>1.91</td></tr>
       </table></div></details>
     </div>
     <div class="card">
-      <h3>Custo estimado por nível (US$)</h3>
-      <p style="margin-bottom:12px">Estimativa em preço de API; o autor rodou na assinatura. Em destaque, o preferido.</p>
+      <h3>Estimated cost per level (US$)</h3>
+      <p style="margin-bottom:12px">Estimated at API prices; the author ran it on a subscription. Highlighted: the preferred one.</p>
       <div class="chart" id="chB"></div>
-      <details><summary>Ver tabela</summary><div class="tw"><table>
-        <tr><th>Nível</th><th>Tempo</th><th>Custo</th><th>Tokens</th><th>Checks</th><th>Perguntas</th></tr>
-        <tr><td>low</td><td>16m43s</td><td>3,91</td><td>191k</td><td>22</td><td>0</td></tr>
-        <tr><td>medium</td><td>1h13m</td><td>12,44</td><td>419k</td><td>23</td><td>0</td></tr>
-        <tr><td>high</td><td>1h07m</td><td>16,31</td><td>~559k</td><td>22</td><td>1</td></tr>
-        <tr class="win"><td>xhigh ★</td><td>1h30m</td><td>25,92</td><td>~723k</td><td>34</td><td>0</td></tr>
-        <tr><td>max</td><td>2h28m</td><td>50,38</td><td>1,18M</td><td>51</td><td>0</td></tr>
-        <tr><td>ultracode</td><td>1h35m</td><td>18,69</td><td>?</td><td>42</td><td>0</td></tr>
+      <details><summary>Show table</summary><div class="tw"><table>
+        <tr><th>Level</th><th>Time</th><th>Cost</th><th>Tokens</th><th>Checks</th><th>Questions</th></tr>
+        <tr><td>low</td><td>16m43s</td><td>3.91</td><td>191k</td><td>22</td><td>0</td></tr>
+        <tr><td>medium</td><td>1h13m</td><td>12.44</td><td>419k</td><td>23</td><td>0</td></tr>
+        <tr><td>high</td><td>1h07m</td><td>16.31</td><td>~559k</td><td>22</td><td>1</td></tr>
+        <tr class="win"><td>xhigh ★</td><td>1h30m</td><td>25.92</td><td>~723k</td><td>34</td><td>0</td></tr>
+        <tr><td>max</td><td>2h28m</td><td>50.38</td><td>1.18M</td><td>51</td><td>0</td></tr>
+        <tr><td>ultracode</td><td>1h35m</td><td>18.69</td><td>?</td><td>42</td><td>0</td></tr>
       </table></div>
-      <p style="margin-top:8px;font-size:.82rem">~ = número falado de forma truncada no vídeo. Os tokens do ultracode foram ditos como “66 mil”, o que não bate com 1h35m de execução; ficam como desconhecidos.</p></details>
+      <p style="margin-top:8px;font-size:.82rem">~ = number spoken in truncated form in the video. Ultracode tokens were said as “66 thousand”, which does not match a 1h35m run; they are treated as unknown.</p></details>
     </div>
   </div>
 
   <div class="grid g3" style="margin-top:16px">
-    <div class="card"><h3>low → medium</h3><p>Maior salto de percepção: marca certa, vídeos reais tocando, estandes e área VIP.</p></div>
-    <div class="card"><h3>high → xhigh</h3><p>Ganho de interação: conversar com personagens, sentar nas palestras, abrir recursos.</p></div>
-    <div class="card"><h3>xhigh → max</h3><p>2× o custo e +1h de execução, com caminhada ruim, glitches e vídeo que não tocava. Regrediu.</p></div>
+    <div class="card"><h3>low → medium</h3><p>Biggest perceived jump: correct branding, real videos playing, booths and a VIP area.</p></div>
+    <div class="card"><h3>high → xhigh</h3><p>Interaction gains: talk to characters, sit in talks, open resources.</p></div>
+    <div class="card"><h3>xhigh → max</h3><p>2× the cost and +1h of runtime, with poor walking, glitches and a video that did not play. It regressed.</p></div>
   </div>
 </div></section>
 
 <section id="astra"><div class="wrap">
-  <span class="chip">Fonte B · GPT-6 Astra</span>
-  <h2>Pesquisa + micro-SaaS em sete condições</h2>
-  <p class="sub">Dados do kit traduzido em <a href="https://inematds.github.io/astra-effort/guia/">astra-effort</a>: a mesma tarefa de pesquisa e construção de 30 a 46 minutos. O autor preferiu o <strong>medium</strong>, que foi o mais rápido e ainda entregou o fluxo verificado. Sol high e Astra ultra (com 3 subagentes) aparecem como condições à parte.</p>
+  <span class="chip">Source B · GPT-6 Astra</span>
+  <h2>Research + micro-SaaS under seven conditions</h2>
+  <p class="sub">Data from the kit translated in <a href="https://inematds.github.io/astra-effort/guia/">astra-effort</a>: the same research-and-build task, 30 to 46 minutes. The author preferred <strong>medium</strong>, which was the fastest and still delivered the verified flow. Sol high and Astra ultra (with 3 subagents) appear as separate conditions.</p>
   <div class="grid g2">
     <div class="card">
-      <h3>Tempo por condição (minutos)</h3>
-      <p style="margin-bottom:12px">O low demorou mais que o medium. Esforço baixo não garante menos trabalho.</p>
+      <h3>Time per condition (minutes)</h3>
+      <p style="margin-bottom:12px">Low took longer than medium. Low effort does not guarantee less work.</p>
       <div class="chart" id="chC"></div>
     </div>
     <div class="card">
-      <h3>Tokens de saída (mil)</h3>
-      <p style="margin-bottom:12px">Sobe sempre com o esforço. O orçamento de raciocínio é gasto com ou sem retorno.</p>
+      <h3>Output tokens (thousands)</h3>
+      <p style="margin-bottom:12px">Always rises with effort. The reasoning budget gets spent whether or not it pays off.</p>
       <div class="chart" id="chD"></div>
     </div>
   </div>
-  <details><summary>Ver tabela</summary><div class="tw"><table>
-    <tr><th>Condição</th><th>Tempo</th><th>Tokens processados</th><th>Tokens de saída</th><th>Nota do produtor</th></tr>
-    <tr><td>low</td><td>37m37s</td><td>14,81M</td><td>51,5k</td><td style="text-align:left">mais tempo e tokens que o medium</td></tr>
-    <tr class="win"><td>medium ★</td><td>30m41s</td><td>10,23M</td><td>42,2k</td><td style="text-align:left">preferido: fluxo verificado no menor tempo</td></tr>
-    <tr><td>high</td><td>41m21s</td><td>14,33M</td><td>57,4k</td><td style="text-align:left">bom com restrições que interagem</td></tr>
-    <tr><td>xhigh</td><td>45m14s</td><td>12,29M</td><td>67,7k</td><td style="text-align:left">achou evidência contra a própria ideia</td></tr>
-    <tr><td>max</td><td>46m10s</td><td>10,55M</td><td>70,2k</td><td style="text-align:left">o mais longo; precisão em valores e regras</td></tr>
-    <tr><td>ultra (3 filhos)</td><td>42m10s</td><td>21,73M</td><td>96,0k</td><td style="text-align:left">+7,12M dos filhos; produto parecido</td></tr>
-    <tr><td>Sol high</td><td>32m49s</td><td>6,70M</td><td>54,2k</td><td style="text-align:left">barato, mas um caminho de decisão quebrado</td></tr>
+  <details><summary>Show table</summary><div class="tw"><table>
+    <tr><th>Condition</th><th>Time</th><th>Processed tokens</th><th>Output tokens</th><th>Producer note</th></tr>
+    <tr><td>low</td><td>37m37s</td><td>14.81M</td><td>51.5k</td><td style="text-align:left">more time and tokens than medium</td></tr>
+    <tr class="win"><td>medium ★</td><td>30m41s</td><td>10.23M</td><td>42.2k</td><td style="text-align:left">preferred: verified flow in the shortest time</td></tr>
+    <tr><td>high</td><td>41m21s</td><td>14.33M</td><td>57.4k</td><td style="text-align:left">good with interacting constraints</td></tr>
+    <tr><td>xhigh</td><td>45m14s</td><td>12.29M</td><td>67.7k</td><td style="text-align:left">found evidence against its own idea</td></tr>
+    <tr><td>max</td><td>46m10s</td><td>10.55M</td><td>70.2k</td><td style="text-align:left">the longest; precision in values and rules</td></tr>
+    <tr><td>ultra (3 children)</td><td>42m10s</td><td>21.73M</td><td>96.0k</td><td style="text-align:left">+7.12M from children; similar product</td></tr>
+    <tr><td>Sol high</td><td>32m49s</td><td>6.70M</td><td>54.2k</td><td style="text-align:left">cheap, but one broken decision path</td></tr>
   </table></div>
-  <p class="mut" style="font-size:.82rem">Os tokens processados incluem ~98% de entrada em cache e não representam custo. Não compare com os tokens da Fonte A em valor absoluto: compare só a forma das curvas.</p></details>
+  <p class="mut" style="font-size:.82rem">Processed tokens include ~98% cached input and do not represent cost. Do not compare them with Source A tokens in absolute terms: compare only the shape of the curves.</p></details>
 </div></section>
 
 <section id="padroes"><div class="wrap">
-  <span class="chip">Cruzando as fontes</span>
-  <h2>Oito padrões</h2>
-  <p class="sub">Inclui a Fonte C, um teste interno registrado no <a href="https://inematds.github.io/maestro-roteador/guia/">maestro-roteador</a>: de high para max, “a diferença foi um favicon, por 2–5× os tokens”.</p>
+  <span class="chip">Crossing the sources</span>
+  <h2>Eight patterns</h2>
+  <p class="sub">Includes Source C, an internal test recorded in <a href="https://inematds.github.io/maestro-roteador/guia/">maestro-roteador</a>: from high to max, “the difference was a favicon, for 2–5× the tokens”.</p>
   <div class="grid g2 pat">
-    <div class="card"><h3>O máximo nunca foi o preferido</h3><p>Preferidos: xhigh no Opus e medium no Astra; no maestro, high ficou praticamente igual ao max. No vídeo do Opus, o max regrediu.</p></div>
-    <div class="card"><h3>O ponto ideal muda com a tarefa</h3><p>Tarefa delimitada de ~40 min → medium. Construção autônoma de horas, com muito material → xhigh. Quem decide é o quanto há para ler e decidir.</p></div>
-    <div class="card"><h3>O raciocínio é sempre gasto; o retorno não vem sempre</h3><p>Os tokens de saída sobem de forma monotônica. O custo sobe 12,9× do low ao max. O orçamento é consumido de qualquer jeito.</p></div>
-    <div class="card"><h3>O custo total não é linear</h3><p>Astra low demorou mais que medium; Opus high terminou antes do medium. Esforço baixo não garante trabalho menor.</p></div>
-    <div class="card"><h3>Mais checks não significam menos bugs</h3><p>O max do Opus fez 51 verificações e ainda teve mais glitches que o xhigh, com 34.</p></div>
-    <div class="card"><h3>Delegação é outra condição</h3><p>Astra ultra acrescentou +7,12M tokens com 3 subagentes, sem mudar o produto. O ultracode do Opus não delegou nada e se comportou como xhigh.</p></div>
-    <div class="card"><h3>Esforço não compra perguntas</h3><p>Houve 1 pergunta em 6 execuções. A ambiguidade precisa ser resolvida no pedido, não subindo o esforço.</p></div>
-    <div class="card"><h3>Esforço compra deliberação, não gosto</h3><p>O salto de “sensação” veio entre low e medium. Daí em diante, o ganho foi de interação e detalhe, o que bate com o eixo modelo × esforço do maestro.</p></div>
+    <div class="card"><h3>The top level was never preferred</h3><p>Preferred: xhigh on Opus and medium on Astra; in maestro, high was practically equal to max. In the Opus video, max regressed.</p></div>
+    <div class="card"><h3>The sweet spot depends on the task</h3><p>Bounded ~40-min task → medium. Hours-long autonomous build with lots of material → xhigh. What decides is how much there is to read and decide.</p></div>
+    <div class="card"><h3>Reasoning is always spent; the payoff is not always there</h3><p>Output tokens rise monotonically. Cost rises 12.9× from low to max. The budget is consumed either way.</p></div>
+    <div class="card"><h3>Total cost is not linear</h3><p>Astra low took longer than medium; Opus high finished before medium. Low effort does not guarantee less work.</p></div>
+    <div class="card"><h3>More checks do not mean fewer bugs</h3><p>Opus max ran 51 checks and still had more glitches than xhigh, with 34.</p></div>
+    <div class="card"><h3>Delegation is a separate condition</h3><p>Astra ultra added +7.12M tokens with 3 subagents without changing the product. Opus ultracode delegated nothing and behaved like xhigh.</p></div>
+    <div class="card"><h3>Effort does not buy questions</h3><p>There was 1 question in 6 runs. Ambiguity has to be resolved in the request, not by raising effort.</p></div>
+    <div class="card"><h3>Effort buys deliberation, not taste</h3><p>The jump in “feel” came between low and medium. From there on, the gain was interaction and detail, which matches maestro’s model × effort axis.</p></div>
   </div>
 </div></section>
 
 <section id="conclusao"><div class="wrap">
   <div class="opin" id="opiniao">
-    <h3>🧭 Opinião do Nei: como uso o esforço</h3>
-    <div class="lad"><span class="on">medium · padrão</span><span class="arr">→</span><span>high · quando precisar de mais raciocínio</span><span class="arr">→</span><span>xhigh · caso extremo</span></div>
-    <p>Usar o <strong>Opus 5.5 em medium</strong> é a melhor opção para o dia a dia. Subo para <strong>high</strong> quando a tarefa pede mais raciocínio e só uso <strong>xhigh</strong> em caso extremo.</p>
-    <p>O mesmo vale para o <strong>GPT-6 Astra</strong>. O max fica de fora: nas duas fontes, ele custou mais e não entregou mais.</p>
+    <h3>🧭 Nei’s take: how I use effort</h3>
+    <div class="lad"><span class="on">medium · default</span><span class="arr">→</span><span>high · when more reasoning is needed</span><span class="arr">→</span><span>xhigh · extreme cases</span></div>
+    <p>Running <strong>Opus 5.5 on medium</strong> is the best option for everyday work. I go up to <strong>high</strong> when the task needs more reasoning and use <strong>xhigh</strong> only in extreme cases.</p>
+    <p>The same goes for <strong>GPT-6 Astra</strong>. Max stays out: in both sources it cost more and did not deliver more.</p>
   </div>
   <div class="rule">
-    <h3>⚖️ Conclusão</h3>
-    <p><strong>Esforço é orçamento de exploração, não botão de qualidade.</strong></p>
-    <p>Comece no menor nível plausível; na dúvida, medium. Suba só com evidência de resultado insuficiente e trate max/ultra como exceção justificada. Essa regra já está no guia e no maestro-roteador.</p>
-    <p>O que este material acrescenta é um <strong>teto observado</strong>: em construção autônoma longa com Opus 5.5, o xhigh foi o melhor e o max não compensou.</p>
+    <h3>⚖️ Conclusion</h3>
+    <p><strong>Effort is an exploration budget, not a quality knob.</strong></p>
+    <p>Start at the lowest plausible level; when in doubt, medium. Go up only with evidence of an insufficient result, and treat max/ultra as a justified exception. This rule is already in the guide and in maestro-roteador.</p>
+    <p>What this material adds is an <strong>observed ceiling</strong>: in long autonomous builds with Opus 5.5, xhigh was the best and max did not pay off.</p>
   </div>
   <div class="card" style="margin-top:16px">
-    <h3>Limites dos dados</h3>
+    <h3>Data limits</h3>
     <ul class="lim">
-      <li>Uma rodada por nível em cada fonte; a variação entre execuções não foi medida.</li>
-      <li>Julgamento visual de uma pessoa. A Fonte A tem patrocinador; a Fonte B foi traduzida sem nova execução.</li>
-      <li>Os custos da Fonte A são estimativa em preço de API.</li>
-      <li>Ainda não há teste INEMA próprio. Para rodar um, use <code>avaliacao/bateria.md</code>.</li>
+      <li>One run per level in each source; run-to-run variance was not measured.</li>
+      <li>Visual judgment by one person. Source A has a sponsor; Source B was translated without a new run.</li>
+      <li>Source A costs are estimates at API prices.</li>
+      <li>There is no INEMA test of our own yet. To run one, use <code>avaliacao/bateria.md</code>.</li>
     </ul>
   </div>
 </div></section>
 
 <footer><div class="wrap">
-  Qual Modelo de IA Usar · referência de esforço · <a href="https://github.com/inematds/modelos">inematds/modelos</a> · <a href="https://inema.club">INEMA.CLUB</a>
+  Which AI Model to Use · effort reference · <a href="https://github.com/inematds/modelos">inematds/modelos</a> · <a href="https://inema.club">INEMA.CLUB</a>
 </div></footer>
 
 <script>
@@ -245,7 +245,7 @@
 
 var NS='http://www.w3.org/2000/svg';
 function el(tag, attrs, parent){ var e=document.createElementNS(NS,tag); for(var k in attrs) e.setAttribute(k,attrs[k]); if(parent) parent.appendChild(e); return e; }
-function fmt(v,d){ return v.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}); }
+function fmt(v,d){ return v.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d}); }
 function tipFor(box){ var t=document.createElement('div'); t.className='tip'; box.appendChild(t); return t; }
 function showTip(tip, box, evt, html){
   var r=box.getBoundingClientRect(); tip.innerHTML=html; tip.style.opacity=1;
@@ -279,7 +279,7 @@ function barChart(id, data, o){
 /* linhas indexadas (um eixo só, base comum low = 1×) */
 function lineChart(id, cats, series, legendId){
   var box=document.getElementById(id), W=520, H=280, m={t:16,r:64,b:34,l:36}, max=14;
-  var svg=el('svg',{viewBox:'0 0 '+W+' '+H,role:'img','aria-label':'Crescimento relativo ao low'},box), tip=tipFor(box);
+  var svg=el('svg',{viewBox:'0 0 '+W+' '+H,role:'img','aria-label':'Growth relative to low'},box), tip=tipFor(box);
   var iw=W-m.l-m.r, ih=H-m.t-m.b, X=function(i){return m.l+iw*i/(cats.length-1);}, Y=function(v){return m.t+ih-ih*v/max;};
   [0,2,4,6,8,10,12,14].forEach(function(v){ el('line',{x1:m.l,x2:W-m.r,y1:Y(v),y2:Y(v),stroke:'var(--grid)'},svg);
     el('text',{x:m.l-6,y:Y(v)+4,'text-anchor':'end',class:'ax'},svg).textContent=v+'×'; });
@@ -302,27 +302,27 @@ function lineChart(id, cats, series, legendId){
 }
 
 lineChart('chA',['low','medium','high','xhigh ★','max'],[
-  {n:'Custo',  c:'var(--s2)', v:[1,3.18,4.17,6.63,12.88]},
-  {n:'Tempo',  c:'var(--s4)', v:[1,4.37,4.01,5.38,8.85]},
+  {n:'Cost',  c:'var(--s2)', v:[1,3.18,4.17,6.63,12.88]},
+  {n:'Time',  c:'var(--s4)', v:[1,4.37,4.01,5.38,8.85]},
   {n:'Tokens', c:'var(--s1)', v:[1,2.19,2.93,3.79,6.18], dy:-2},
   {n:'Checks', c:'var(--s3)', v:[1,1.05,1.00,1.55,2.32], dy:4}
 ],'lgA');
 
 barChart('chB',[
   {k:'low',v:3.91},{k:'medium',v:12.44},{k:'high',v:16.31},
-  {k:'xhigh',v:25.92,win:true,note:'preferido pelo autor'},{k:'max',v:50.38,note:'mais bugs que o xhigh'},
-  {k:'ultracode',v:18.69,alt:true,note:'não criou workflows; agiu como xhigh'}
-],{max:55,ticks:[0,10,20,30,40,50],unit:'US$',aria:'Custo estimado por nível',f:function(v){return fmt(v,2);}});
+  {k:'xhigh',v:25.92,win:true,note:'author’s pick'},{k:'max',v:50.38,note:'more bugs than xhigh'},
+  {k:'ultracode',v:18.69,alt:true,note:'spawned no workflows; acted like xhigh'}
+],{max:55,ticks:[0,10,20,30,40,50],unit:'US$',aria:'Estimated cost per level',f:function(v){return fmt(v,2);}});
 
 barChart('chC',[
-  {k:'low',v:37.6},{k:'medium',v:30.7,win:true,note:'preferido pelo autor'},{k:'high',v:41.4},
-  {k:'xhigh',v:45.2},{k:'max',v:46.2},{k:'ultra',v:42.2,alt:true,note:'3 subagentes'},{k:'Sol',v:32.8,alt:true,note:'GPT-6 Sol high'}
-],{max:50,ticks:[0,10,20,30,40,50],unit:'min',aria:'Tempo por condição',f:function(v){return fmt(v,0);}});
+  {k:'low',v:37.6},{k:'medium',v:30.7,win:true,note:'author’s pick'},{k:'high',v:41.4},
+  {k:'xhigh',v:45.2},{k:'max',v:46.2},{k:'ultra',v:42.2,alt:true,note:'3 subagents'},{k:'Sol',v:32.8,alt:true,note:'GPT-6 Sol high'}
+],{max:50,ticks:[0,10,20,30,40,50],unit:'min',aria:'Time per condition',f:function(v){return fmt(v,0);}});
 
 barChart('chD',[
-  {k:'low',v:51.5},{k:'medium',v:42.2,win:true,note:'preferido pelo autor'},{k:'high',v:57.4},
-  {k:'xhigh',v:67.7},{k:'max',v:70.2},{k:'ultra',v:96.0,alt:true,note:'inclui 3 subagentes'},{k:'Sol',v:54.2,alt:true,note:'GPT-6 Sol high'}
-],{max:100,ticks:[0,25,50,75,100],unit:'mil tokens',aria:'Tokens de saída por condição',f:function(v){return fmt(v,0);}});
+  {k:'low',v:51.5},{k:'medium',v:42.2,win:true,note:'author’s pick'},{k:'high',v:57.4},
+  {k:'xhigh',v:67.7},{k:'max',v:70.2},{k:'ultra',v:96.0,alt:true,note:'includes 3 subagents'},{k:'Sol',v:54.2,alt:true,note:'GPT-6 Sol high'}
+],{max:100,ticks:[0,25,50,75,100],unit:'thousand tokens',aria:'Output tokens per condition',f:function(v){return fmt(v,0);}});
 </script>
 </body>
 </html>

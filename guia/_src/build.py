@@ -127,7 +127,8 @@ T = {
   "desc": "Guia direto para escolher entre Claude Opus 5.5, GPT-6 Astra, Sol e Luna: modelos explicados de forma simples, pilha por tarefa, regras, prompts e bateria de teste.",
   "mtitle": "Os modelos de IA novos, explicados de forma simples",
   "mdesc": "Opus 5.5, GPT-6 Astra, Sol, Luna, Fable 5.1, Grok 4.7, Sonnet 5 e Haiku: para que serve cada um, quando usar e quando evitar.",
-  "nav": ["Modelos", "Pilha", "Guia de uso", "Padrões"], "toggle": "Alternar tema",
+  "nav": ["Modelos", "Pilha", "Guia de uso", "Padrões", "Esforço"],
+  "eff_cta": ("Esforço na prática", "Dados do Opus 5.5 e do GPT-6 Astra em todos os níveis de esforço, com gráficos. Na opinião do Nei: medium por padrão, high quando precisar de mais raciocínio, xhigh só em caso extremo."), "toggle": "Alternar tema",
   "chip": "Claude · GPT-6 · Grok — setembro de 2026",
   "h1": 'O modelo <span class="amb">certo</span> para cada tarefa',
   "lead": "Muitos modelos chegaram ao mesmo tempo. A resposta prática é simples: use o melhor modelo para cada tarefa, sem lealdade a nenhuma plataforma.",
@@ -195,7 +196,8 @@ T = {
   "desc": "A direct guide to choosing among Claude Opus 5.5, GPT-6 Astra, Sol and Luna: models explained simply, stack per task, rules, prompts and a test battery.",
   "mtitle": "The new AI models, explained simply",
   "mdesc": "Opus 5.5, GPT-6 Astra, Sol, Luna, Fable 5.1, Grok 4.7, Sonnet 5 and Haiku: what each one is for, when to use it and when to avoid it.",
-  "nav": ["Models", "Stack", "How to use", "Patterns"], "toggle": "Toggle theme",
+  "nav": ["Models", "Stack", "How to use", "Patterns", "Effort"],
+  "eff_cta": ("Effort in practice", "Opus 5.5 and GPT-6 Astra data across every effort level, with charts. Nei's take: medium by default, high when you need more reasoning, xhigh only in extreme cases."), "toggle": "Toggle theme",
   "chip": "Claude · GPT-6 · Grok — September 2026",
   "h1": 'The <span class="amb">right</span> model for each task',
   "lead": "Many models shipped at the same time. The practical answer is simple: use the best model for each task, with no loyalty to any platform.",
@@ -262,7 +264,8 @@ T = {
   "desc": "Guía directa para elegir entre Claude Opus 5.5, GPT-6 Astra, Sol y Luna: modelos explicados de forma simple, stack por tarea, reglas, prompts y batería de pruebas.",
   "mtitle": "Los nuevos modelos de IA, explicados de forma simple",
   "mdesc": "Opus 5.5, GPT-6 Astra, Sol, Luna, Fable 5.1, Grok 4.7, Sonnet 5 y Haiku: para qué sirve cada uno, cuándo usarlo y cuándo evitarlo.",
-  "nav": ["Modelos", "Stack", "Guía de uso", "Patrones"], "toggle": "Cambiar tema",
+  "nav": ["Modelos", "Stack", "Guía de uso", "Patrones", "Esfuerzo"],
+  "eff_cta": ("Esfuerzo en la práctica", "Datos de Opus 5.5 y GPT-6 Astra en todos los niveles de esfuerzo, con gráficos. Opinión de Nei: medium por defecto, high cuando haga falta más razonamiento, xhigh solo en casos extremos."), "toggle": "Cambiar tema",
   "chip": "Claude · GPT-6 · Grok — septiembre de 2026",
   "h1": 'El modelo <span class="amb">correcto</span> para cada tarea',
   "lead": "Muchos modelos llegaron al mismo tiempo. La respuesta práctica es simple: usa el mejor modelo para cada tarea, sin lealtad a ninguna plataforma.",
@@ -346,7 +349,7 @@ def head(lang, kind, depth):
 def nav(lang, kind, depth):
     t = T[lang]; r = rel(depth); here = r + lang_prefix(lang)
     main = here if kind == "modelos" else ""
-    links = [(here + "modelos/", t["nav"][0]), (main + "#pilha", t["nav"][1]), (main + "#guia", t["nav"][2]), (main + "#padroes", t["nav"][3])]
+    links = [(here + "modelos/", t["nav"][0]), (main + "#pilha", t["nav"][1]), (main + "#guia", t["nav"][2]), (main + "#padroes", t["nav"][3]), (here + "esforco/", t["nav"][4])]
     sec = "\n".join(f'    <a class="sec" href="{h}">{n}</a>' for h, n in links)
     langs = " ".join(
         f'<a class="{"on" if l == lang else ""}" href="{r}{page_url(l, kind)}" hreflang="{HTML_LANG[l]}" lang="{HTML_LANG[l]}">{l.upper()}</a>'
@@ -466,6 +469,7 @@ def main_page(lang):
   <h2>{t["p_h"]}</h2>
   <p class="sub">{t["p_sub"]}</p>
   <div class="grid g3">{pats}</div>
+  <a class="qcard" href="esforco/" style="margin-top:22px;border-color:var(--amb)"><span class="n">📊 {t["eff_cta"][0]} →</span><p style="margin-top:.4em">{t["eff_cta"][1]}</p></a>
 </div></section>
 
 <section id="roadmap"><div class="wrap">
