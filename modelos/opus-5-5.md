@@ -35,3 +35,5 @@ Não travou no filtro de segurança onde o Sol travou.
 **Papel extra:** orquestrador que despacha workers baratos (Sol/Luna) — ver `prompts/orquestrador-workers.md`.
 
 **Evidência própria:** nenhuma ainda com o 5.5.
+
+**Referência de esforço (terceiros, não muda o `esforco_recomendado`):** num `/goal` longo de construção 3D, o autor preferiu **xhigh**; max custou 2× e regrediu; ultracode agiu como xhigh. Ver [`referencias/padroes-esforco-2026-09-24.md`](../referencias/padroes-esforco-2026-09-24.md) e a página [guia/esforco/](https://inematds.github.io/modelos/guia/esforco/).

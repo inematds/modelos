@@ -75,6 +75,7 @@ Próxima revisão: **2026-09-30**.
 |---|---|
 | Decidir rápido | a tabela acima |
 | Detalhe de um modelo | [`modelos/`](modelos/) — uma ficha por modelo (YAML: status, melhor para, evitar para, esforço) |
+| Ver dados de esforço (Opus 5.5 × Astra, com gráficos) | [guia/esforco/](https://inematds.github.io/modelos/guia/esforco/) · [`referencias/padroes-esforco-2026-09-24.md`](referencias/padroes-esforco-2026-09-24.md) — referência, não regra |
 | Usar dois modelos juntos | [`prompts/`](prompts/) — planejar→executar, segunda opinião, orquestrador+workers, tarefa braçal |
 | Entender as regras | [`regras.md`](regras.md) — sem lealdade, lua de mel, cota por resultado, um agente por pasta, teste de 30 min |
 | Testar nas minhas tarefas | [`avaliacao/bateria.md`](avaliacao/bateria.md) — 8 casos reais com nota 0–3 |
