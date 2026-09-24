@@ -61,7 +61,7 @@ teto observado: em construção autônoma longa com Opus 5.5, xhigh foi o melhor
 
 Usar o **Opus 5.5 em medium** é a melhor opção para o dia a dia. Subir para **high** quando a tarefa
 precisa de mais raciocínio; **xhigh** só em caso extremo. Vale também para o **GPT-6 Astra**. O max fica
-de fora. (Registrado em 2026-09-24. Hoje a ficha do Opus e a pilha ainda dizem `low`; ver pendência.)
+de fora. (Registrado em 2026-09-24 como opinião; não altera a pilha nem a ficha do Opus, que seguem com `low`.)
 
 ## Limitações
 
